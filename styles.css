@@ -49,7 +49,8 @@ hr {
     --darker: #1f2937;
     --darkest: #111827;
     --gray: #6b7280;
-    --light: #eee;
+    --light: #dbdbdb;
+    --lighter: #eee;
     --pink: #ec4899;
     --purple: #8b5cf6;
 }
@@ -64,15 +65,50 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background: var(--dark);
+    background: var(--lighter);
     color: #fff;
 }
+
+/* The sidebar menu */
+.sidenav {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 20%; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: var(--light);
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+    padding-left: 2%;
+}
+.sidenav #logo {
+    height: auto;
+    width: 110%;
+    display: block;
+    margin-left: -10%;
+    margin-top: -5%;
+}
+
+.sidenav #vp {
+    height: auto;
+    width: 70%;
+    border-radius: 100%;
+    border-color: red;
+    border-width: 10vh;
+    display: block;
+    margin-left: 10%;
+    margin-top: 10%;
+}  
 
 header {
     padding: 2rem 1rem;
     max-width: 800px;
     width: 100%;
-    margin: 0 auto;
+    margin-left: 20%;
+    margin-top: auto;
+    margin-right: 0;
+    margin-bottom: auto;
 }
 
 header h1 {
@@ -131,7 +167,11 @@ main {
     flex: 1 1 0%;
     max-width: 800px;
     width: 100%;
-    margin: 0 auto;
+    margin-left: 20%;
+    margin-top: auto;
+    margin-right: 0;
+    margin-bottom: auto;
+
 }
 
 .task-list {
