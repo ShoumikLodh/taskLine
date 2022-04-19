@@ -92,13 +92,14 @@ body {
 
 .sidenav #vp {
     height: auto;
-    width: 70%;
+    width: 80%;
     border-radius: 100%;
-    border-color: red;
-    border-width: 10vh;
+    border-color: gray;
+    border-style: solid;
+    border-width: 1.5vh;
     display: block;
-    margin-left: 10%;
-    margin-top: 10%;
+    margin-left: 5%;
+    margin-top: -5%;
 }  
 
 header {
@@ -131,7 +132,7 @@ input, button {
 
 #new-task-input {
     flex: 1 1 0%;
-    background: var(--darker);
+    background: #fff;
     padding: 1rem;
     border-radius: 1rem;
     margin-right: 1rem;
