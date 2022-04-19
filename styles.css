@@ -96,7 +96,8 @@ body {
     border-radius: 100%;
     border-color: gray;
     border-style: solid;
-    border-width: 1.5vh;
+    /* border-width: 1.5vh; */
+    border-width: 3px;
     display: block;
     margin-left: 5%;
     margin-top: -5%;
