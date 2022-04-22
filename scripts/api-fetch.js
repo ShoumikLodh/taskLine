@@ -36,6 +36,7 @@ function execute() {
         let picUrl = response.result.photoUrl;
         
         let profName = document.createElement('p');
+        profName.className = "course-prof";
         profName.innerHTML = response.result.name.fullName;
 
         // courseDiv.insertBefore(createImg(picUrl), courseDiv.firstChild);
