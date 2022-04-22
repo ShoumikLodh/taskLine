@@ -6,6 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>taskLine</title>
+    <script language="javascript" type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.min.js"></script>
+    <script language="javascript" type="text/javascript" src="libraries/matter.js"></script>
+    <!-- uncomment lines below to include extra p5 libraries -->
+    <!---->
+    <!--<script language="javascript" src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/addons/p5.sound.min.js"></script>-->
+    <script language="javascript" type="text/javascript" src="libraries/sketch.js"></script>
+    <script language="javascript" type="text/javascript" src="libraries/particle.js"></script>
+    <script language="javascript" type="text/javascript" src="libraries/boundary.js"></script>
+    <link rel="stylesheet" href="index.css" type="text/css">
+    <!-- this line removes any default padding and style. you might only need one of these values set. -->
+    <style> body {padding: 0; margin: 0;} </style>
 
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="auth.js"></script>
@@ -15,13 +26,12 @@
 
 <body>
     <button onclick="authenticate().then(loadClient).then(execute)">Sign In</button>
-    <!-- <div class="sidenav">
+    <div class="sidenav">
         <div class="sidenavcontent">
             <img id="logo" src="assets/logo.png"/> 
             <img id="vp" src="assets/vp.png"/>
         </div>
-    </div> -->
-      
+    </div>
       
     
     
