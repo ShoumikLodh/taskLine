@@ -7,7 +7,7 @@ var GoogleAuth;
 
   function authenticate() {
     return GoogleAuth = gapi.auth2.getAuthInstance()
-        .signIn({scope: "https://www.googleapis.com/auth/classroom.courses.readonly https://www.googleapis.com/auth/classroom.rosters.readonly https://www.googleapis.com/auth/classroom.course-work.readonly"})
+        .signIn({scope: "https://www.googleapis.com/auth/classroom.courses.readonly https://www.googleapis.com/auth/classroom.rosters.readonly https://www.googleapis.com/auth/classroom.course-work.readonly https://www.googleapis.com/auth/classroom.profile.photos"})
         .then(function() { console.log("Sign-in successful"); },
               function(err) { console.error("Error signing in", err); });
   }
