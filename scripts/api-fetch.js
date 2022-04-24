@@ -27,7 +27,7 @@ function execute() {
 }
 
   function addInstructorInfo(teacher_id, courseDiv) {
-    var request = gapi.client.classroom.userProfiles.get(
+    return gapi.client.classroom.userProfiles.get(
       {
         'userId': teacher_id
       })
@@ -51,27 +51,15 @@ function execute() {
       profPic.onload = () => {
         courseDiv.insertBefore(profPic, courseDiv.firstChild);
         courseDiv.style.display = "block";
-
       }
   }
 
-/* 
-  function displayDivs() {
-    console.log("entered function");
-    let allProfpics = document.querySelectorAll(".course-prof-pic-item");
-    console.log(allProfpics);
-    allProfpics.onload = () => {
-      console.log(allProfpics);
-      let allCourseDivs = document.querySelectorAll(".course-title-box");
-      allCourseDivs.style.display = "block";
-    } 
-  }
- */
+
   document.addEventListener('DOMContentLoaded', function() {
     let signInButton = document.querySelector('#sign-in-button');
     signInButton.onclick = () => {
-      authenticate().then(loadClient).then(execute);
-      // displayDivs();
+      authenticate()
+          .then(loadClient).then(execute);
     }
   });
   

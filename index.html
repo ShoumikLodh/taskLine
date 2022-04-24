@@ -14,7 +14,6 @@
     <script language="javascript" type="text/javascript" src="libraries/sketch.js"></script>
     <script language="javascript" type="text/javascript" src="libraries/particle.js"></script>
     <script language="javascript" type="text/javascript" src="libraries/boundary.js"></script>
-    <link rel="stylesheet" href="index.css" type="text/css">
     <!-- this line removes any default padding and style. you might only need one of these values set. -->
     <style> body {padding: 0; margin: 0;} </style>
 
@@ -25,7 +24,9 @@
 </head>
 
 <body>
-    <button id="sign-in-button">Sign In and Execute</button>
+    <button id="sign-in-button"
+    style="margin: 25px">Sign In/Authorize</button>
+    <div id="auth-status" style="display: inline; padding-left: 25px"></div><hr>
     <div class="sidenav">
         <div class="sidenavcontent">
             <img id="logo" src="assets/logo.png"/> 
