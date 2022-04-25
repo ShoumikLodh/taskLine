@@ -1,5 +1,5 @@
 var GoogleAuth;
-var SCOPE = "https://www.googleapis.com/auth/classroom.courses.readonly https://www.googleapis.com/auth/classroom.rosters.readonly https://www.googleapis.com/auth/classroom.course-work.readonly https://www.googleapis.com/auth/classroom.profile.photos";
+var SCOPE = `https://www.googleapis.com/auth/classroom.courses.readonly https://www.googleapis.com/auth/classroom.rosters.readonly https://www.googleapis.com/auth/classroom.course-work.readonly https://www.googleapis.com/auth/classroom.profile.photos`;
 
   function authenticate() {
     return gapi.auth2.getAuthInstance()
@@ -46,12 +46,13 @@ var SCOPE = "https://www.googleapis.com/auth/classroom.courses.readonly https://
 		var user = GoogleAuth.currentUser.get();
 		var isAuthorized = user.hasGrantedScopes(SCOPE);
 		if (isAuthorized) {
-		  document.querySelector('#sign-in-button').innerHTML = 'Sign out';
-		  document.querySelector('#auth-status').innerHTML = 'You are currently signed in and have granted ' +
-			  'access to this app.';
+			document.querySelector('#sign-in-button').innerHTML = 'Sign out';
+			document.querySelector('#auth-status').innerHTML = 'You are currently signed in and have granted ' +
+			'access to this app.';
 		} else {
-		  document.querySelector('#sign-in-button').innerHTML = 'Sign In/Authorize';
-		  document.querySelector('#auth-status').innerHTML = 'You have not authorized this app or you are ' +
+			window.location.href = '/';
+			document.querySelector('#sign-in-button').innerHTML = 'Sign In/Authorize';
+			document.querySelector('#auth-status').innerHTML = 'You have not authorized this app or you are ' +
 			  'signed out.';
 		}
 	  }
