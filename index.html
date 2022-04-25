@@ -5,57 +5,57 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css" type="text/css">
+    <!-- <link rel="stylesheet" href="styles.css" /> -->
+    <link rel="stylesheet" href="stylesheets/index.css" />
     <title>taskLine</title>
     
     <script language="javascript" type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.min.js"></script>
     <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.18.0/matter.min.js"></script>
-    <script language="javascript" type="text/javascript" src="libraries/sketch.js"></script>
-    <script language="javascript" type="text/javascript" src="libraries/particle.js"></script>
-    <script language="javascript" type="text/javascript" src="libraries/boundary.js"></script>
+    <script language="javascript" type="text/javascript" defer src="scripts/visualization/sketch.js"></script>
+    <script language="javascript" type="text/javascript" src="scripts/visualization/particle.js"></script>
+    <script language="javascript" type="text/javascript" src="scripts/visualization/boundary.js"></script>
+    <script language="javascript" type="text/javascript" src="scripts/data/assignment.js"></script>
 
     <script src="https://apis.google.com/js/api.js"></script>
-    <script src="scripts/auth.js"></script>
-    <script src="scripts/api-fetch.js"></script>
+    <script src="scripts/auth.js" defer></script>
+    <script src="scripts/api-fetch.js" defer></script>
 </head>
 
 <body>
-    <button id="sign-in-button"
-    style="margin: 25px">Sign In/Authorize</button>
-    <div id="auth-status" style="display: inline; padding-left: 25px"></div><hr>
-    <div class="sidenav">
-        <div class="sidenavcontent">
-            <img id="logo" src="assets/logo.png"/> 
-            <img id="vp" src="assets/vp.png"/>
+    <sidebar>
+        <img id="taskline-logo" src="assets/logo.png"></img>
+        <div id="duck-image-container">
+            <div id="duck-counter">24</div>
+            <img id="duck-image" src="assets/vp.png"></img>
         </div>
-    </div>
-      
-    
-    
-    
-        <!-- <div class="sidebar">
-            <img src="" id="pet-logo" />
-            <div class="pet-stats">
-                <h4>Virtual Pet Stats</h3> -->
-                <!-- features here -->
-            <!-- </div>
-            <hr>
-            <div class="prompts">
-                <h4>Notifications</h3> -->
-                <!-- notifs here -->
-            <!-- </div>
-            <hr>
-            <img src="" id="settings-icon" />
-            <h4>Settings</h4>
-        </div> -->
-    
-        <!-- <div class="search-bar">
-            <img src="search-icon here" /> 
-            <span>Search</span>
-        </div> -->
-
-
-    
-
+        <div id="virtualpet-stats">
+            <div id="virtualpet-stats-heading">Stats For Virtual Pet</div>
+            <div class="virtualpet-stats-element"></div>
+            <div class="virtualpet-stats-element"></div>
+            <div class="virtualpet-stats-element"></div>
+        </div>
+        <div id="notifications">
+            <div id="notifications-heading">Notifications</div>
+            <div class="notifications-element"></div>
+            <div class="notifications-element"></div>
+            <div class="notifications-element"></div>
+        </div>
+    </sidebar>
+    <main>
+        <nav>
+            <div id="auth-status"></div>
+            <button id="sign-in-button">Sign In/Authorize</button>
+        </nav>
+        <div class="classroom-box">
+            <div class="classroom-header">
+                <img class="profile-picture" src="assets/vp.png"></img>
+                <span class="classroom-banner-text">
+                    <span>Designing Interactive Systems</span>
+                    <span>Grace Eden</span>
+                </span>
+            </div>
+        </div>
+    </main>
 </body>
+
 </html>

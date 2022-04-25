@@ -1,5 +1,5 @@
-
 function execute() {
+  console.log(43);
     return gapi.client.classroom.courses.list({
       "courseStates": [
         "ACTIVE"
@@ -27,6 +27,7 @@ function execute() {
 }
 
   function addInstructorInfo(teacher_id, courseDiv) {
+    console.log(434);
     return gapi.client.classroom.userProfiles.get(
       {
         'userId': teacher_id
@@ -56,6 +57,7 @@ function execute() {
 
 
   document.addEventListener('DOMContentLoaded', function() {
+    console.log(435);
     let signInButton = document.querySelector('#sign-in-button');
     signInButton.onclick = () => {
       authenticate()
