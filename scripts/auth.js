@@ -55,7 +55,7 @@ var SCOPE = `https://www.googleapis.com/auth/classroom.courses.readonly https://
 			document.querySelector('#auth-status').innerHTML = 'You are currently signed in and have granted ' +
 			'access to this app.';
 		} else {
-			window.location.href = '/';
+			window.location.href = '/index.html';
 			document.querySelector('#sign-in-button').innerHTML = 'Sign In/Authorize';
 			document.querySelector('#auth-status').innerHTML = 'You have not authorized this app or you are ' +
 			  'signed out.';
