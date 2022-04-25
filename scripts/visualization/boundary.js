@@ -25,7 +25,7 @@ function Boundary(x, y, w, h, a) {
       strokeWeight(1);
       noStroke();
       fill(0);
-      rect(0, 0, this.w, this.h);
+      // rect(0, 0, this.w, this.h);
       pop();
     };
   }

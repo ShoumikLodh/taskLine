@@ -18,8 +18,19 @@ var boundaries = [];
 var ground;
 var circleBlob;
 
+var parentDOM = document.getElementsByTagName('main')[0];
+
+window.addEventListener('resize', event => {
+  var width = parentDOM.getBoundingClientRect().width;
+  var height = parentDOM.getBoundingClientRect().height;
+
+  resizeCanvas(width, height);
+})
+
 function setup() {
-  createCanvas(1600, 900);
+  var width = parentDOM.getBoundingClientRect().width;
+  var height = parentDOM.getBoundingClientRect().height;
+  createCanvas(width, height);
  
   engine = Engine.create();
   world = engine.world;
@@ -29,7 +40,7 @@ function setup() {
   const yStart = 100;
 
   var prev = null;
-  for (var x = 200; x < 400; x += 10) {
+  for (var x = 200; x < 380; x += 10) {
     var fixed = false;
     if (!prev) {
       fixed = true;
@@ -62,19 +73,10 @@ function setup() {
   console.log(circleBlob)
 }
 
-// function keyPressed() {
-//   if (key == ' ') {
-//   }
-// }
-
-// function mouseDragged() {
-//   circles.push(new Circle(mouseX, mouseY, random(5, 10)));
-// }
-
 function draw() {
     background: 'transparent';
     wireframeBackground: 'transparent';
-  background(200,200,250);
+  background(255);
   Engine.update(engine);
   for (var i = 0; i < boundaries.length; i++) {
     boundaries[i].show();
@@ -92,27 +94,12 @@ function draw() {
   })
   
   circleBlob.style.top = lastParticle.body.position.y.toString().concat('px');
-  circleBlob.style.left = (lastParticle.body.position.x - 65).toString().concat('px');
+  circleBlob.style.left = (lastParticle.body.position.x + 255).toString().concat('px');
 
   
   // circleBlob.style.left = lastParticle.body.position.x - 27;
-  char_length=circleBlob.innerHTML.length
 
   // console.log(circleBlob.style.top)
 
   // circleBlob.style.left = lastParticle.body.position.x - 41;
-  if(char_length>0){
-    if(char_length<20){
-      var minimize= 25 + (char_length*0.9);
-      circleBlob.style.left = lastParticle.body.position.x - minimize;
-    } else if(char_length>=20 && char_length<40 ){
-      var minimize= 25 + (char_length*2);
-      circleBlob.style.left = lastParticle.body.position.x - minimize;
-    }
-    else if(char_length>=40){
-      var minimize= 25 + (char_length*2.9);
-      circleBlob.style.left = lastParticle.body.position.x - minimize;
-    }
-    
-  }
 }

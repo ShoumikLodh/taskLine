@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+#defaultCanvas0 {
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  /* display: none; */
+}
+.circle-blob::-webkit-scrollbar {
+  display: none;
+}
+
+.circle-blob {
+  min-width: 50px;
+  min-height: 50px;
+  height: auto;
+  width: auto;
+  aspect-ratio: 1;
+  /* overflow:scroll; */
+
+  background: hotpink;
+
+  /* Make it a circle */
+  border-radius: 50%;
+
+  /* Center content inside it */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Make it positionable */
+  position: absolute;
+}
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  margin: 0;
+}
+
+sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 250px;
+  padding: 0 1rem;
+  align-items: stretch;
+  background: #E4E4E4;
+  overflow-y: auto;
+}
+
+main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#taskline-logo {
+  width: 100%;
+}
+
+#duck-image-container {
+  margin: -0.8rem 1rem;
+}
+
+#duck-image, #duck-image-container {
+  aspect-ratio: 1;
+  max-width: 100%;
+}
+
+#duck-image {
+  border-radius: 50%;
+  border: 10px solid #98CB86;
+  padding: 2rem;
+  box-sizing: border-box;
+  position: relative;
+  top: -3rem;
+  background: white;
+}
+
+#duck-counter {
+  position: relative;
+  right: -153px;
+  top: 16px;
+  width: 3rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  color: #F6B50F;
+  font-size: 1.4rem;
+  font-weight: 700;
+  border: 8px solid #F6B50F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  z-index: 1;
+}
+
+#virtualpet-stats, #notifications {
+  margin-top: 2rem;
+  padding: 0.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+#virtualpet-stats-heading, #notifications-heading {
+  color: #4D4D4D;
+  text-align: center;
+  font-weight: 700;
+  font-size: 25px;
+}
+
+.virtualpet-stats-element, .notifications-element {
+  background: white;
+  height: 1rem;
+  border-radius: 4px;
+}
+
+#notifications {
+  padding: 1.2rem;
+  border-radius: 10px;
+  background: #D0D0D0;
+  gap: 0.7rem;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#sign-in-button {
+  margin: 12px 25px;
+  padding: 0.45rem 0.8rem;
+  background: rgb(82, 98, 216);
+  color: white;
+  font-weight: 400;
+  font-size: 14px;
+  border-radius: 20px;
+  border: 1px solid gainsboro;
+}
+
+#auth-status {
+  display: inline;
+  padding-left: 25px;
+}
+
+.classroom-box {
+  margin: 1rem 3rem 2.5rem 8rem;
+  --border-radius: 3rem;
+  --border-thickness: 6px;
+  border-radius: var(--border-radius);
+  border: var(--border-thickness) solid #969696;
+  height: 90%;
+
+  z-index: 10;
+}
+
+.profile-picture {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: var(--border-thickness) solid #969696;
+  height: 100%;
+}
+
+.classroom-header {
+  background: white;
+  display: flex;
+  align-items: center;
+  padding: 0.7rem 0.5rem;
+  gap: 1rem;
+  border-radius: calc(var(--border-radius) - var(--border-thickness));
+  border: var(--border-thickness) solid #969696;
+  margin: calc(0px - var(--border-thickness));
+  height: calc(0.8*var(--border-radius));
+}
+
+.classroom-banner-text {
+  color: #969696;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.classroom-banner-text > span:first-child {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0;
+  margin-bottom: -3px;
+}
+
+.classroom-banner-text > span:last-child {
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+#classroom-box-list {
+  flex-grow: 1;
+  /* display: flex;
+  justify-content: flex-start;
+  width: 100%; */
+}
+
+#classroom-box-background {
+  position: absolute;
+  top: 150px;
+  width: calc(100% - 330px);
+  margin: 0 1.4rem;
+  height: 90%;
+}
+
+#classroom-box-background > * {
+  height: 15%;
+  align-self: stretch;
+  z-index: 0;
+  border-left: 7px solid #48F939;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-left: 0.75rem;
+  font-size: 0.7rem;
+  color: #333;
+}
+
+#classroom-box-background > *:nth-child(1) {
+  background: #48F93919;
+  border-color: #48F939;
+  justify-content: space-between;
+}
+
+#classroom-box-background > *:nth-child(2) {
+  background: #FFE14626;
+  border-color: #FFE146;
+}
+
+#classroom-box-background > *:nth-child(3) {
+  background: #FF990033;  
+  border-color: #FF9900;
+}
+
+#classroom-box-background > *:nth-child(4) {
+  background: #FF000033;
+  border-color: #FF0000;
+}
