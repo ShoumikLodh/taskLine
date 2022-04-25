@@ -55,6 +55,7 @@ sidebar {
   padding: 0 1rem;
   align-items: stretch;
   background: #E4E4E4;
+  overflow-y: auto;
 }
 
 main {
@@ -111,6 +112,7 @@ main {
   flex-direction: column;
   align-items: stretch;
   gap: 0.5rem;
+  list-style: none;
 }
 
 #virtualpet-stats-heading, #notifications-heading {
@@ -161,7 +163,9 @@ nav {
   --border-thickness: 6px;
   border-radius: var(--border-radius);
   border: var(--border-thickness) solid #969696;
-  flex-grow: 1;
+  height: 90%;
+
+  z-index: 10;
 }
 
 .profile-picture {
@@ -201,4 +205,53 @@ nav {
   font-size: 0.8rem;
   font-weight: 400;
   margin: 0;
+}
+
+#classroom-box-list {
+  flex-grow: 1;
+  /* display: flex;
+  justify-content: flex-start;
+  width: 100%; */
+}
+
+#classroom-box-background {
+  position: absolute;
+  top: 150px;
+  width: calc(100% - 330px);
+  margin: 0 1.4rem;
+  height: 90%;
+}
+
+#classroom-box-background > * {
+  height: 15%;
+  align-self: stretch;
+  z-index: 0;
+  border-left: 7px solid #48F939;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-left: 0.75rem;
+  font-size: 0.7rem;
+  color: #333;
+}
+
+#classroom-box-background > *:nth-child(1) {
+  background: #48F93919;
+  border-color: #48F939;
+  justify-content: space-between;
+}
+
+#classroom-box-background > *:nth-child(2) {
+  background: #FFE14626;
+  border-color: #FFE146;
+}
+
+#classroom-box-background > *:nth-child(3) {
+  background: #FF990033;  
+  border-color: #FF9900;
+}
+
+#classroom-box-background > *:nth-child(4) {
+  background: #FF000033;
+  border-color: #FF0000;
 }
