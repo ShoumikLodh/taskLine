@@ -68,4 +68,5 @@ gapi.load("client:auth2", function() {
 	gapi.auth2.init({client_id: "510067352144-f15751hlrjg27gg5hkdehlv0gkmkd7o9.apps.googleusercontent.com"});
 });
 
+
 // http://localhost:3000/auth/google/callback

@@ -8,10 +8,12 @@ function getCourseWork(course, courseDiv) {
       "pageSize": 3
     })
 	.then(function(response) {
-		deadlinesInRange = {1: [], 
+		var deadlinesInRange = {
+							1: [], 
 							2: [],
 							3: [],
-							4: []};
+							4: []
+					};
 
 
 		return new Promise(function(resolve, reject) {
@@ -19,46 +21,57 @@ function getCourseWork(course, courseDiv) {
 				reject(new Error("No deadlines in the given course"));
 			} 
 			else {
-				resolve();
-				response.result.courseWork.forEach((assignment) => {
-				console.log(assignment);
-				let taskDiv = document.createElement('div');
-				courseDiv.appendChild(taskDiv);
+				// let assignmentList = response.result.courseWork;
+				// assignmentList.forEach(assignment => {
+					response.result.courseWork.forEach(assignment => {
 
-				let deadline = document.createElement('p');
-				deadline.innerHTML = assignment.title;
-				taskDiv.appendChild(deadline);
+					// console.log(course.name, assignment.title);
+					let taskDiv = document.createElement('div');
+					taskDiv.setAttribute("data-range", "-1");
+					taskDiv.setAttribute("data-pc", "0");
+					taskDiv.className = "task-item";
+					courseDiv.appendChild(taskDiv);
+					
+					remainingPercent = Math.round( getDuePercentage(assignment) );
+					if (remainingPercent !== -1) {
+						taskDiv.innerHTML = assignment.title + "\n";
+						taskDiv.dataset.pc = remainingPercent;
+					} else {
+						courseDiv.removeChild(taskDiv);
+					}
 
-				remainingPercent = getDuePercentage(assignment);
-				switch(remainingPercent) {
-					case (remainingPercent > 75):
-						deadlinesInRange[1].push(assignment);
-						deadline.dataset.range = '1';
-						break;
-					case (remainingPercent >= 50 && remainingPercent < 75):
-						deadlinesInRange[2].push(assignment);	
-						deadline.dataset.range = '2';
-						break;
-					case (remainingPercent >= 25 && remainingPercent < 50):
-						deadlinesInRange[3].push(assignment);
-						deadline.dataset.range = '3';
-						break;
-					case (remainingPercent < 25):
-						deadlinesInRange[4].push(assignment);
-						deadline.dataset.range = '4';
-						break;
-					default: 
-						console.log("Incorrect percentage range given for courseWork");
-				}
-
+					switch (true) {
+						case (remainingPercent >= 75 && remainingPercent < 100):
+							deadlinesInRange[1].push(assignment);
+							taskDiv.dataset.range = 1;
+							break;
+						case (remainingPercent >= 50 && remainingPercent < 75):
+							deadlinesInRange[2].push(assignment);
+							taskDiv.dataset.range = 2;
+							break;
+						case (remainingPercent >= 25 && remainingPercent < 50):
+							deadlinesInRange[3].push(assignment);
+							taskDiv.dataset.range = 3;
+							break;
+						case (remainingPercent > 0 && remainingPercent < 25):
+							deadlinesInRange[4].push(assignment);
+							taskDiv.dataset.range = 4;
+							break;
+						default:
+							console.log("Deadline already passed.");
+					}
 
 				});
 			}
+			console.log(deadlinesInRange);
+			resolve(deadlinesInRange);
+
 		});
 	},
 	function(err) { console.error("Execute error", err); }
 	);
-  }
+}
+
 
 
 function getDuePercentage(assignment) {
@@ -67,19 +80,39 @@ function getDuePercentage(assignment) {
 
 	let currentTime = new Date().valueOf();	
 	currentTime = Math.round(currentTime/1000);
-
-	let year = assignment.dueDate.year, 
-	month = assignment.dueDate.month, 
-	date = assignment.dueDate.day, 
-	hours = assignment.dueTime.hours, 
+	
+	let year = assignment.dueDate.year, month = assignment.dueDate.month, 
+	date = assignment.dueDate.day, hours = assignment.dueTime.hours, 
 	minutes = assignment.dueTime.minutes; 
-	const dueTime = new Date(year, month, date, hours, minutes, 0).valueOf();
+	if (minutes === undefined)	minutes = 0;
+
+	let dueTime = new Date(year, month - 1, date, hours, minutes).valueOf();
 	dueTime = Math.round(dueTime/1000);
 
-	totalDeadlineTime = dueTime - creationTime;
-	timeElapsed = currentTime - creationTime;
+	if (currentTime > dueTime)
+		return -1;
 
-	percentage = (timeElapsed / totalDeadlineTime) * 100;
+	let totalDeadlineTime = dueTime - creationTime;
+	let timeElapsed = currentTime - creationTime;
+
+	let percentage = (timeElapsed / totalDeadlineTime) * 100;
 	return 100 - percentage;
 
 }
+
+function showExpandedCourse() {
+	let allCourseDivs = document.getElementsByClassName('course-title-box');
+	allCourseDivs.forEach(courseDiv => {
+		
+		courseDiv.onclick = () => {
+			courseDiv.classList.add("course-selected");
+			let courses = document.getElementsByClassName("course-title-box");
+			for (let i = 0; i < courses.length; i++) {
+				if (courses[i].classList.contains("course-selected"))
+					continue;
+				courses[i].style.display = 'none';
+			}
+		}
+	})
+}
+
