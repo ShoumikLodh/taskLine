@@ -8,6 +8,8 @@ var SCOPE = `https://www.googleapis.com/auth/classroom.courses.readonly https://
         .then(function() { console.log("Sign-in successful"); },
               function(err) { console.error("Error signing in", err); });
   }
+
+  
   function loadClient() {
 		console.log('loadClient');
     gapi.client.setApiKey("AIzaSyDZm8Px4yerKwaTZgcsbWR1USkkrzWkEv8");
@@ -56,9 +58,10 @@ var SCOPE = `https://www.googleapis.com/auth/classroom.courses.readonly https://
 			'access to this app.';
 		} else {
 			window.location.href = '/index.html';
-			document.querySelector('#sign-in-button').innerHTML = 'Sign In/Authorize';
+			document.querySelector('#sign-in-button').innerHTML = 'Authorise';
 			document.querySelector('#auth-status').innerHTML = 'You have not authorized this app or you are ' +
-			  'signed out.';
+			'signed out.';
+			// init();
 		}
 	  }
 	

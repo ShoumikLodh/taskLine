@@ -1,41 +1,48 @@
-function getCourseWork(course, courseDiv) {
-    return gapi.client.classroom.courses.courseWork.list({
-      "courseId": course.id,
-      "courseWorkStates": [
-        "PUBLISHED"
-      ],
-      "orderBy": "dueDate desc",
-      "pageSize": 3
-    })
-	.then(function(response) {
-		var deadlinesInRange = {
-							1: [], 
-							2: [],
-							3: [],
-							4: []
-					};
+async function fetchCourseWork(course, courseDiv) {
+	var response;
+	try {
+		response = await gapi.client.classroom.courses.courseWork.list({
+		"courseId": course.id,
+		"courseWorkStates": [
+			"PUBLISHED"
+		],
+		"orderBy": "dueDate desc",
+		"pageSize": 3
+		});	
 
+	}
+	catch(err) {
+		console.error("Execute error", err);
+	}
 
-		return new Promise(function(resolve, reject) {
-			if ( Object.keys(response.result).length === 0 ) {
-				reject(new Error("No deadlines in the given course"));
-			} 
+	var deadlinesInRange = {
+		1: [], 
+		2: [],
+		3: [],
+		4: [] };
+
+	return (await getTasks());
+		
+	function getTasks() {
+		return new Promise(function (resolve, reject) {
+			if (Object.keys(response.result).length === 0) {
+				reject(new Error(`No deadlines in the course: ${course.name}`));
+			}
 			else {
-				// let assignmentList = response.result.courseWork;
-				// assignmentList.forEach(assignment => {
-					response.result.courseWork.forEach(assignment => {
+				response.result.courseWork.forEach(assignment => {
 
-					// console.log(course.name, assignment.title);
 					let taskDiv = document.createElement('div');
 					taskDiv.setAttribute("data-range", "-1");
-					taskDiv.setAttribute("data-pc", "0");
+					taskDiv.setAttribute("data-id", assignment.id);
+					taskDiv.style.border = "1px red solid";
 					taskDiv.className = "task-item";
 					courseDiv.appendChild(taskDiv);
-					
-					remainingPercent = Math.round( getDuePercentage(assignment) );
+
+					remainingPercent = Math.round(getDuePercentage(assignment));
 					if (remainingPercent !== -1) {
-						taskDiv.innerHTML = assignment.title + "\n";
-						taskDiv.dataset.pc = remainingPercent;
+						taskDiv.innerHTML = assignment.title.substring(0, 35) + "...";
+						assignment.percentage = remainingPercent;
+						// assignment.courseName = course.name;
 					} else {
 						courseDiv.removeChild(taskDiv);
 					}
@@ -57,20 +64,16 @@ function getCourseWork(course, courseDiv) {
 							deadlinesInRange[4].push(assignment);
 							taskDiv.dataset.range = 4;
 							break;
-						default:
-							console.log("Deadline already passed.");
 					}
 
 				});
 			}
-			console.log(deadlinesInRange);
 			resolve(deadlinesInRange);
 
 		});
-	},
-	function(err) { console.error("Execute error", err); }
-	);
+	}
 }
+
 
 
 
@@ -100,11 +103,12 @@ function getDuePercentage(assignment) {
 
 }
 
-function showExpandedCourse() {
+function showCourseView(taskList) {
+	//handle courses
 	let allCourseDivs = document.getElementsByClassName('course-title-box');
 	allCourseDivs.forEach(courseDiv => {
-		
 		courseDiv.onclick = () => {
+
 			courseDiv.classList.add("course-selected");
 			let courses = document.getElementsByClassName("course-title-box");
 			for (let i = 0; i < courses.length; i++) {
@@ -112,7 +116,26 @@ function showExpandedCourse() {
 					continue;
 				courses[i].style.display = 'none';
 			}
-		}
-	})
-}
 
+
+			// handle tasks
+			let alltasksDiv = courseDiv.getElementsByClassName('task-item');
+			alltasksDiv.forEach(taskDiv => {
+				taskDiv.onclick = () => {
+					
+					taskDiv.classList.add("task-item-selected");
+					let tasks = document.getElementsByClassName("task-item");
+					for (let i = 0; i < tasks.length; i++) {
+						if (tasks[i].classList.contains("task-item-selected"))
+							continue;
+						tasks[i].style.display = 'none';
+					}
+
+					getTaskDetails(taskList, taskDiv.dataset.id);
+				}
+
+				
+			});
+		}
+	});
+}
