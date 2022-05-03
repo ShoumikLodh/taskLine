@@ -66,33 +66,56 @@ async function execute() {
 
 
 function addCourseBoxItem(course) {
-	let course_div = document.createElement("div");
-	course_div.style.display = "none";
-	course_div.className = "course-title-box";
+	// <ul id="classroom-box-list">
+    //         <div class="classroom-box">
+    //             <div class="classroom-header">
+    //                 <img class="profile-picture" src="assets/vp.png"></img>
+    //                 <span class="classroom-banner-text">
+    //                     <span>Designing Interactive Systems</span>
+    //                     <span>Grace Eden</span>
+    //                 </span>
+    //             </div>
+    //         </div>
+    //     </ul>
+
+	let classroom_box=document.createElement('div');
+	classroom_box.className='classroom-box';
+	let class_header=document.createElement('div');
+	class_header.className="classroom-header";
+
+	let course_div = document.createElement("span");
+	//course_div.style.display = "none";
+	course_div.className = "classroom-banner-text";
 	course_div.innerHTML = `
-	<h3 class = "course-title-item">${course.name}</h3>`;
+	<span class = "classroom-banner-text">${course.name}</span	>`;
+
+
 	// let course_title = document.createElement("h3");
 	// course_title.className = "course-title-item";
 	// course_title.innerHTML = course.name;
 	// course_div.appendChild(course_title);
+	class_header.appendChild(course_div);
+	classroom_box.appendChild(class_header);
+	addInstructorInfo(course.ownerId, class_header, course_div);
+	document.getElementById("classroom-box-list").appendChild(classroom_box);
 
 
-	document.body.appendChild(course_div);
+	//document.body.appendChild(course_div);
 	return course_div;
 }
 
-function addInstructorInfo(teacher_id, courseDiv) {
+function addInstructorInfo(teacher_id, courseHeader, courseDiv) {
 	return gapi.client.classroom.userProfiles.get({ 'userId': teacher_id})
 		
 	.then(function(response) {
 		let profName = response.result.name.fullName;
-		courseDiv.innerHTML += `<p class="course-prof-item">${profName}<p>`;
+		courseDiv.innerHTML += `<span>${profName}</span>`;
 		
 		let profPic = document.createElement("img");
-		profPic.className = "course-prof-pic-item";
+		// profPic.className = "course-prof-pic-item";
 		profPic.src = "https:".concat(response.result.photoUrl);
 		profPic.referrerPolicy = "no-referrer";
-
+		courseHeader.appendChild(profPic);
 		profPic.onload = () => {
 			courseDiv.insertBefore(profPic, courseDiv.firstChild);
 			courseDiv.style.display = "block";
