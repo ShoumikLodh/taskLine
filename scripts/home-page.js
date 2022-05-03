@@ -109,7 +109,7 @@ function addInstructorInfo(teacher_id, courseHeader, courseDiv) {
 		
 	.then(function(response) {
 		let profName = response.result.name.fullName;
-		courseDiv.innerHTML += `<span>${profName}</span>`;
+		courseDiv.innerHTML = `<span>${profName}</span>`;
 		
 		let profPic = document.createElement("img");
 		// profPic.className = "course-prof-pic-item";
