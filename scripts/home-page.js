@@ -89,10 +89,11 @@ function addCourseBoxItem(course) {
 	let classroom_box=document.createElement('div');
 	classroom_box.className='classroom-box';
 	document.getElementById("classroom-box-list").appendChild(classroom_box);
-
-
-
+	
+	
+	
 	let class_header=document.createElement('div');
+	class_header.style.display = "none";
 	class_header.className="classroom-header";
 	class_header.innerHTML += `
 	<span class = "classroom-banner-text">${course.name}</span>
@@ -136,7 +137,7 @@ function addInstructorInfo(teacher_id, class_header) {
 		profPic.onload = () => {
 			class_header.insertBefore(profPic, class_header.firstChild);
 			class_header.style.display = "block";
-			class_header.style.border = "1px red solid";
+			// class_header.style.border = "1px red solid";
 		}
 	});
 }

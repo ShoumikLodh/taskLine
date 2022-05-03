@@ -106,14 +106,14 @@ function getDuePercentage(assignment) {
 
 function showCourseView(taskList) {
 	//handle courses
-	let allCourseDivs = document.getElementsByClassName('course-title-box');
+	let allCourseDivs = document.getElementsByClassName('classroom-box');
 	allCourseDivs.forEach(courseDiv => {
 		courseDiv.onclick = () => {
 
-			courseDiv.classList.add("course-selected");
-			let courses = document.getElementsByClassName("course-title-box");
+			courseDiv.classList.add("classroom-box--selected");
+			let courses = document.getElementsByClassName("classroom-box");
 			for (let i = 0; i < courses.length; i++) {
-				if (courses[i].classList.contains("course-selected"))
+				if (courses[i].classList.contains("classroom-box--selected"))
 					continue;
 				courses[i].style.display = 'none';
 			}
@@ -124,10 +124,10 @@ function showCourseView(taskList) {
 			alltasksDiv.forEach(taskDiv => {
 				taskDiv.onclick = () => {
 					
-					taskDiv.classList.add("task-item-selected");
+					taskDiv.classList.add("task-item--selected");
 					let tasks = document.getElementsByClassName("task-item");
 					for (let i = 0; i < tasks.length; i++) {
-						if (tasks[i].classList.contains("task-item-selected"))
+						if (tasks[i].classList.contains("task-item--selected"))
 							continue;
 						tasks[i].style.display = 'none';
 					}
