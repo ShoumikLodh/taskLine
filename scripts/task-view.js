@@ -19,6 +19,8 @@ async function getTaskDetails(taskList, taskId) {
 	displayTask(response);
 }
 
+
+//change it to other html semantic
 function displayTask(task) {
 	console.log(task);
 	let details = document.createElement('div');

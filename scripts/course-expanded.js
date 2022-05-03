@@ -42,7 +42,6 @@ async function fetchCourseWork(course, courseDiv) {
 					if (remainingPercent !== -1) {
 						taskDiv.innerHTML = assignment.title.substring(0, 35) + "...";
 						assignment.percentage = remainingPercent;
-						// assignment.courseName = course.name;
 					} else {
 						courseDiv.removeChild(taskDiv);
 					}

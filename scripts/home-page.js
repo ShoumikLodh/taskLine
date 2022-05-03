@@ -1,7 +1,34 @@
-
-window.onload = () => {
-	authenticate().then(loadClient).then(execute);
+window.onload = async () => {
+	const promise = await authenticate().then(loadClient).then(execute);
+	filterTasks();
 	
+}
+
+function filterTasks() {
+	let highlightButtons = document.getElementsByClassName('highlight-button');
+	highlightButtons.forEach(button => {
+		button.onclick = button => {
+			// highlight time block here;
+
+			let highlighted_tasks = [];
+			
+			let deadlines = document.getElementsByClassName("task-item");
+			deadlines.forEach(task => {
+				if (button.dataset.range === task.dataset.range) {
+					task.classList.add("task-item--highlight");
+				}
+			});
+
+
+			window.onclick = () => {
+				//dehighlight time block here
+				highlighted_tasks.forEach(task => {
+					task.classList.remove("task-item--highlight");
+				})
+				window.onclick = null;
+			} 
+		};
+	});
 }
 
 async function execute() {
@@ -19,7 +46,6 @@ async function execute() {
 			.then(taskListWithRange => {
 				taskList[course.id] = taskListWithRange;
 				addInstructorInfo(course.ownerId, course_div);
-				// addCourseBoxItem(course, course_div);
 	
 			})
 			.catch(err => {
