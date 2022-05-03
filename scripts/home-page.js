@@ -70,33 +70,33 @@ function addCourseBoxItem(course) {
     //         <div class="classroom-box">
     //             <div class="classroom-header">
     //                 <img class="profile-picture" src="assets/vp.png"></img>
-    //                 <span class="classroom-banner-text">
-    //                     <span>Designing Interactive Systems</span>
-    //                     <span>Grace Eden</span>
-    //                 </span>
+    //                 <span class="classroom-banner-text">Designing Interactive Systems</span>
+//                     <span>Grace Eden</span>
     //             </div>
     //         </div>
     //     </ul>
 
 	let classroom_box=document.createElement('div');
 	classroom_box.className='classroom-box';
+
+
+
 	let class_header=document.createElement('div');
 	class_header.className="classroom-header";
-
-	let course_div = document.createElement("span");
-	//course_div.style.display = "none";
-	course_div.className = "classroom-banner-text";
-	course_div.innerHTML = `
-	<span class = "classroom-banner-text">${course.name}</span	>`;
-
-
-	// let course_title = document.createElement("h3");
-	// course_title.className = "course-title-item";
-	// course_title.innerHTML = course.name;
-	// course_div.appendChild(course_title);
-	class_header.appendChild(course_div);
 	classroom_box.appendChild(class_header);
-	addInstructorInfo(course.ownerId, class_header, course_div);
+
+	// let course_span = document.createElement("span");
+	// course_span.className = "classroom-banner-text";
+	// course_span.innerHTML = `
+	// <span class = "classroom-banner-text">${course.name}</span>`;
+	// class_header.appendChild(course_span);
+	// course_div.style.display = "none";
+	// course_div.innerHTML = `
+	// <span class = "classroom-banner-text">${course.name}</span>`;
+	class_header.innerHTML += `
+	<span class = "classroom-banner-text">${course.name}</span>`;
+
+	addInstructorInfo(course.ownerId, class_header);
 	document.getElementById("classroom-box-list").appendChild(classroom_box);
 
 
@@ -104,22 +104,24 @@ function addCourseBoxItem(course) {
 	return course_div;
 }
 
-function addInstructorInfo(teacher_id, courseHeader, courseDiv) {
+function addInstructorInfo(teacher_id, courseHeader) {
 	return gapi.client.classroom.userProfiles.get({ 'userId': teacher_id})
 		
 	.then(function(response) {
 		let profName = response.result.name.fullName;
-		courseDiv.innerHTML += `<span>${profName}</span>`;
+		courseHeader.innerHTML += `<span>${profName}</span>`;
 		
-		let profPic = document.createElement("img");
 		// profPic.className = "course-prof-pic-item";
+
+
+		let profPic = document.createElement("img");
 		profPic.src = "https:".concat(response.result.photoUrl);
 		profPic.referrerPolicy = "no-referrer";
-		courseHeader.appendChild(profPic);
+		// courseHeader.appendChild(profPic);
 		profPic.onload = () => {
-			courseDiv.insertBefore(profPic, courseDiv.firstChild);
-			courseDiv.style.display = "block";
-			courseDiv.style.border = "1px red solid";
+			courseHeader.insertBefore(profPic, courseHeader.firstChild);
+			courseHeader.style.display = "block";
+			courseHeader.style.border = "1px red solid";
 		}
 		// let picUrl = "https:".concat(response.result.photoUrl);
 		// profPic.style.height = '30px';
