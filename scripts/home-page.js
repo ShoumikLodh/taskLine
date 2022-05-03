@@ -6,7 +6,6 @@ window.onload = () => {
 
 async function execute() {
 	var taskList = {};
-	
 	try {
 		const response = await gapi.client.classroom.courses.list({
 			"courseStates": [
@@ -94,7 +93,7 @@ function addInstructorInfo(teacher_id, courseHeader, courseDiv) {
 		profPic.onload = () => {
 			courseDiv.insertBefore(profPic, courseDiv.firstChild);
 			courseDiv.style.display = "block";
-			// courseDiv.style.border = "1px red solid";
+			courseDiv.style.border = "1px red solid";
 		}
 		// let picUrl = "https:".concat(response.result.photoUrl);
 		// profPic.style.height = '30px';
