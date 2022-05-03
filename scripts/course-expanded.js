@@ -36,7 +36,9 @@ async function fetchCourseWork(course, courseDiv) {
 					taskDiv.setAttribute("data-id", assignment.id);
 					taskDiv.style.border = "1px red solid";
 					taskDiv.className = "task-item";
+					// console.log(courseDiv);
 					courseDiv.appendChild(taskDiv);
+
 
 					remainingPercent = Math.round(getDuePercentage(assignment));
 					if (remainingPercent !== -1) {
