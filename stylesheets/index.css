@@ -33,6 +33,7 @@
 }
 
 * {
+  
   font-family: 'Poppins', sans-serif;
 }
 
@@ -255,5 +256,73 @@ nav {
 #classroom-box-background > *:nth-child(4) {
   background: #FF000033;
   border-color: #FF0000;
+}
+.task-details-div{
+  align-self: center;
+  background-color: #4D4D4D;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  border-radius: 6%;
+  overflow: scroll;
+  min-width: 500px;
+  min-height: 75%;
+  max-height: 75%;
+/* height: fit-content; */
+  /* height: 80%; */
+  margin-top: 20px;
+  
+  z-index: 0;
+  border: 7px solid #646764;
+  
+  /* justify-content: flex-end; */
+  /* padding-left: 0.75rem; */
+  font-size:small;
+  /* font-size: 0.7rem; */
+  color: rgb(250, 245, 245);
+}
+::-webkit-scrollbar{
+  width: 1px;
+}
+::-webkit-scrollbar-track{
+  background: none;
+  border-radius: 100vw;
+  margin-block: .15em;
+}
+::-webkit-scrollbar-thumb{
+  border-radius: 100vw;
+  background-color: #ef9a87;
+  border:.25em;
+  border-color: #ef9a87;
+}
+.class-title{
+  font-size: medium;
+padding:1em;
+padding-bottom:0em;
+}
+.due-date,.update-time{
+  padding:1em;
+  margin: 0px;
+}
+.due-date{
+  color: rgb(229, 61, 61);
+}
+.task-description{
+  margin: 1em;
+  border-radius: 2%;
+  background-color: #969696;
+padding: 5px;
+}
+.task-attachment-item{
+  margin:1em;
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+}
+.task-name{
+  margin: 2px;
+  display: flex;
+  align-items: center;
+
 }
 

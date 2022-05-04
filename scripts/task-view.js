@@ -29,17 +29,20 @@ function displayTask(task) {
 
 	let taskTitle = document.createElement('div');
 	taskTitle.innerHTML = task.title;
+	taskTitle.className="class-title"
 	details.appendChild(taskTitle);
 	details.appendChild(document.createElement('hr'));
 
-	let dueDate = document.createElement('h5');
+	let dueDate = document.createElement('h4');
 	let due = task.dueDate;
-	dueDate.innerHTML = task.dueTime.hours +  ":" + task.dueTime.minutes + "  " +
+	dueDate.className="due-date";
+	dueDate.innerHTML = "Due Date :  "+task.dueTime.hours +  ":" + task.dueTime.minutes + "  " +
 			due.day + "/" + due.month + "/" + due.year;
 	details.appendChild(dueDate);
 
 	let updateTime = document.createElement('p');
-	updateTime.innerHTML = task.updateTime.substring(0,10);
+	updateTime.className="update-time";
+	updateTime.innerHTML = "Updated :  "+task.updateTime.substring(0,10);
 	details.appendChild(updateTime);
 
 
@@ -55,6 +58,7 @@ function displayTask(task) {
 
 	let classroomButton = document.createElement("button");
 	classroomButton.innerHTML = "View in Classroom";
+	classroomButton.id="sign-in-button";
 	classroomButton.setAttribute("target", "_blank");
 	details.appendChild(classroomButton);
 	classroomButton.onclick = () => {
@@ -90,12 +94,13 @@ function getAttachments(details, array) {
 		let thumbnail = document.createElement('img');
 		thumbnail.src = section.thumbnailUrl; 
 		thumbnail.referrerPolicy = "no-referrer";
-		thumbnail.style.height = '30px';
-		thumbnail.style.width = '30px';
+		thumbnail.style.height = '60px';
+		thumbnail.style.width = '60px';
 		// attachment.appendChild(thumbnail);
 
 		let title = document.createElement('span');
 		title.innerHTML = section.title.substring(0,30);
+		title.className="task-name";
 		attach.appendChild(thumbnail);
 		attach.appendChild(title);
 		attach.onclick = () => {
