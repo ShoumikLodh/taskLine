@@ -58,7 +58,7 @@ function displayTask(task) {
 
 	let classroomButton = document.createElement("button");
 	classroomButton.innerHTML = "View in Classroom";
-	classroomButton.id="sign-in-button";
+	classroomButton.id="classroom-button";
 	classroomButton.setAttribute("target", "_blank");
 	details.appendChild(classroomButton);
 	classroomButton.onclick = () => {
