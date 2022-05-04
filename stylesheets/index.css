@@ -155,7 +155,26 @@ nav {
   border-radius: 20px;
   border: 1px solid gainsboro;
 }
-
+#sign-in-button-red {
+  margin: 12px 25px;
+  padding: 0.45rem 0.8rem;
+  background: rgb(216, 95, 82);
+  color: white;
+  font-weight: 400;
+  font-size: 14px;
+  border-radius: 20px;
+  border: 1px solid gainsboro;
+}
+.buttons{
+  margin: 12px 25px;
+  padding: 0.45rem 0.8rem;
+  background: rgb(216, 95, 82);
+  color: white;
+  font-weight: 400;
+  font-size: 14px;
+  border-radius: 20px;
+  border: 1px solid gainsboro;
+}
 #auth-status {
   display: inline;
   padding-left: 25px;
