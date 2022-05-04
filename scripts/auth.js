@@ -2,7 +2,7 @@ var GoogleAuth;
 var SCOPE = `https://www.googleapis.com/auth/classroom.courses.readonly https://www.googleapis.com/auth/classroom.rosters.readonly https://www.googleapis.com/auth/classroom.course-work.readonly https://www.googleapis.com/auth/classroom.profile.photos`;
 
   function authenticate() {
-		console.log('auth');
+		// console.log('auth');
     return gapi.auth2.getAuthInstance()
         .signIn({scope: SCOPE})
         .then(function() { console.log("Sign-in successful"); },
@@ -11,11 +11,11 @@ var SCOPE = `https://www.googleapis.com/auth/classroom.courses.readonly https://
 
   
   function loadClient() {
-		console.log('loadClient');
+		// console.log('loadClient');
     gapi.client.setApiKey("AIzaSyDZm8Px4yerKwaTZgcsbWR1USkkrzWkEv8");
     return gapi.client.load("https://classroom.googleapis.com/$discovery/rest?version=v1")
         .then(function() { 
-			console.log("GAPI client loaded for API"); 
+			// console.log("GAPI client loaded for API"); 
 			GoogleAuth = gapi.auth2.getAuthInstance();
 
 			// Listen for sign-in state changes.
@@ -35,7 +35,7 @@ var SCOPE = `https://www.googleapis.com/auth/classroom.courses.readonly https://
 
 
 	function handleAuthClick() {
-		console.log('handleAuthClick');
+		// console.log('handleAuthClick');
 		if (GoogleAuth.isSignedIn.get()) {
 			GoogleAuth.signOut();
 		} else {
@@ -44,23 +44,23 @@ var SCOPE = `https://www.googleapis.com/auth/classroom.courses.readonly https://
 	}
 
 	function updateSigninStatus() {
-		console.log('updateSigninStatus');
+		// console.log('updateSigninStatus');
 		setSigninStatus();
 	}
 
 	function setSigninStatus() {
-		console.log('setSigninStatus');
+		// console.log('setSigninStatus');
 		var user = GoogleAuth.currentUser.get();
 		var isAuthorized = user.hasGrantedScopes(SCOPE);
 		if (isAuthorized) {
 			document.querySelector('#sign-in-button').innerHTML = 'Sign out';
-			document.querySelector('#auth-status').innerHTML = 'You are currently signed in and have granted ' +
-			'access to this app.';
+			// document.querySelector('#auth-status').innerHTML = 'You are currently signed in and have granted ' +
+			// 'access to this app.';
 		} else {
 			window.location.href = '/index.html';
 			document.querySelector('#sign-in-button').innerHTML = 'Authorise';
-			document.querySelector('#auth-status').innerHTML = 'You have not authorized this app or you are ' +
-			'signed out.';
+			// document.querySelector('#auth-status').innerHTML = 'You have not authorized this app or you are ' +
+			// 'signed out.';
 			// init();
 		}
 	  }

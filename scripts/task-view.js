@@ -22,7 +22,7 @@ async function getTaskDetails(taskList, taskId) {
 
 //change it to other html semantic
 function displayTask(task) {
-	console.log(task);
+	// console.log(task);
 	let details = document.createElement('div');
 	details.className = "task-details-div";
 	document.body.appendChild(details);
@@ -75,7 +75,7 @@ function getAttachments(details, array) {
 	for (var num in array) {
 		if (num === '4')  break;
 		let material = array[num];
-		console.log(material);
+		// console.log(material);
 		let attach = document.createElement('div');
 		details.appendChild(attach);
 		attach.className = "task-attachment-item";

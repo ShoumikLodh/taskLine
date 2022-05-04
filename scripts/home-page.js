@@ -134,6 +134,7 @@ function addInstructorInfo(teacher_id, class_header) {
 
 
 		let profPic = document.createElement("img");
+		profPic.className = "profile-picture";
 		profPic.src = "https:".concat(response.result.photoUrl);
 		profPic.referrerPolicy = "no-referrer";
 		profPic.onload = () => {

@@ -83,6 +83,8 @@ main {
   border-radius: 50%;
   border: 10px solid #98CB86;
   padding: 2rem;
+  height: 200px;
+  width: auto;
   box-sizing: border-box;
   position: relative;
   top: -3rem;
@@ -168,6 +170,10 @@ nav {
   height: 90%;
 
   z-index: 10;
+}
+
+.classroom-box--hidden {
+  display: none;
 }
 
 .profile-picture {
@@ -267,7 +273,7 @@ nav {
   overflow: scroll;
   min-width: 500px;
   min-height: 75%;
-  max-height: 75%;
+  max-height: 90%;
 /* height: fit-content; */
   /* height: 80%; */
   margin-top: 20px;
@@ -325,4 +331,12 @@ padding: 5px;
   align-items: center;
 
 }
+
+/* xiao, add task-item css here only */
+
+.task-item-hidden {
+  display: none;
+}
+
+
 
