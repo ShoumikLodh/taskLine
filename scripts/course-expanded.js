@@ -112,30 +112,31 @@ function showCourseView(taskList) {
 	allCourseDivs.forEach(courseDiv => {
 
 		courseDiv.onclick = () => {
-			let backButtonPressed = false;
+			// let backButtonPressed = false;
 			let courses = document.getElementsByClassName("classroom-box");
 			for (let i = 0; i < courses.length; i++) {
 				
 				if (courses[i] === courseDiv) continue;
 				courses[i].classList.add("classroom-box--hidden");
+				// console.log(courses[i]);
 			}
 
 			let backButton = document.createElement('button');
-			backButton.setAttribute("id", "back-to-home-button");
+			// backButton.setAttribute("id", "back-to-home-button");
 			backButton.innerHTML = "Home Page";
-			backButton.className="buttons";
-			document.getElementById("navbar").appendChild(backButton);
-
-			//document.body.appendChild(backButton);
+			backButton.className = "buttons";
+			// document.getElementById("navbar").appendChild(backButton);
+			document.body.appendChild(backButton);
+			
 			backButton.onclick = () => {
 				backToHomeView(courseDiv);
 				document.body.removeChild(backButton);
-				backButtonPressed = true;
+				// backButtonPressed = true;
 			}
 			// console.log(backButtonPressed);
 
-			if (backButtonPressed === true) return;
-			else handleTaskClick(taskList, courseDiv, backButton);
+			// if (backButtonPressed === true) return;
+			handleTaskClick(taskList, courseDiv, backButton);
 			
 		}
 	});
@@ -146,35 +147,47 @@ function handleTaskClick(taskList, courseDiv, backButton) {
 	let alltasksDiv = courseDiv.getElementsByClassName('task-item');
 	alltasksDiv.forEach(taskDiv => {
 		taskDiv.onclick = () => {
-			console.log(backButton);
-			backButton.style.display = "none";
-			
+			document.body.removeChild(backButton);
+
 			let tasks = document.getElementsByClassName("task-item");
 			for (let i = 0; i < tasks.length; i++) {
 				if (tasks[i] === taskDiv) continue;
 				tasks[i].classList.add("task-item--hidden");
 			}
-
+			
 			getTaskDetails(taskList, taskDiv.dataset.id);
-
 
 
 			//create back button
 			let backToCourseButton = document.createElement('button');
-			backToCourseButton.setAttribute("id", "back-to-course-button");
-			backToCourseButton.className="buttons";
-
-			//backToCourseButton.id="sign-in-button-red";
+			backToCourseButton.className = "buttons";
 			backToCourseButton.innerHTML = "Course View";
+			// backToCourseButton.setAttribute("id", "back-to-course-button");
+			//backToCourseButton.id="sign-in-button-red";
 			//document.getElementById("navbar").removeChild();
 			//document.getElementById("navbar").appendChild(signIn);
-			document.getElementById("navbar").appendChild(backToCourseButton);
-
-			//document.body.appendChild(backToCourseButton);
+			// document.getElementById("navbar").appendChild(backToCourseButton);
+			document.body.appendChild(backToCourseButton);
 			backToCourseButton.onclick = () => {
 				backToCourseView(courseDiv);
-				//document.body.removeChild(backToCourseButton);
+				// homeButton[0].style.display = "block";
+				// console.log(homeButton[0]);
+				document.body.removeChild(backToCourseButton);
 			}
+
+			/* document.addEventListener('DOMContentLoaded', () => {
+
+				let homeButton = document.querySelectorAll(".buttons");
+				// console.log(home);
+				console.log(homeButton, homeButton[0]);
+				homeButton[0].style.display = "none";
+				
+				
+			
+				
+			}); */
+		
+		
 		}
 
 		
