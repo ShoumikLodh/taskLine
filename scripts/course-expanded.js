@@ -128,7 +128,7 @@ function showCourseView(taskList) {
 			let backButton = document.createElement('button');
 			backToCourseButton.className = "back-to-home-button";
 			document.body.appendChild(backButton);
-			backButton.onclick = backToHomeView();
+			backButton.onclick = backToHomeView;
 
 
 			// handle tasks
@@ -154,7 +154,7 @@ function showCourseView(taskList) {
 					let backToCourseButton = document.createElement('button');
 					backToCourseButton.className = "back-to-course-button";
 					document.body.appendChild(backToCourseButton);
-					backToCourseButton.onclick = backToCourseView();
+					backToCourseButton.onclick = backToCourseView;
 				}
 
 				
