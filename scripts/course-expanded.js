@@ -161,7 +161,7 @@ function handleTaskClick(taskList, courseDiv, backButton) {
 			//create back button
 			let backToCourseButton = document.createElement('button');
 			backToCourseButton.className = "buttons";
-			backToCourseButton.innerHTML = "Course View";
+			backToCourseButton.innerHTML = "Back";
 			// backToCourseButton.setAttribute("id", "back-to-course-button");
 			//backToCourseButton.id="sign-in-button-red";
 			//document.getElementById("navbar").removeChild();
