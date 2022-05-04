@@ -105,18 +105,30 @@ function getDuePercentage(assignment) {
 }
 
 function showCourseView(taskList) {
+
+
+
 	//handle courses
 	let allCourseDivs = document.getElementsByClassName('classroom-box');
 	allCourseDivs.forEach(courseDiv => {
 		courseDiv.onclick = () => {
 
-			courseDiv.classList.add("classroom-box--selected");
+			// courseDiv.classList.add("classroom-box--selected");
 			let courses = document.getElementsByClassName("classroom-box");
 			for (let i = 0; i < courses.length; i++) {
-				if (courses[i].classList.contains("classroom-box--selected"))
-					continue;
+				// if (courses[i].classList.contains("classroom-box--selected")) {
+				// 	continue;
+				// }
+				if (courses[i] === courseDiv) continue;
+				courses[i].classList.add("classroom-box--hidden");
 				courses[i].style.display = 'none';
 			}
+
+			//create back button
+			let backButton = document.createElement('button');
+			backToCourseButton.className = "back-to-home-button";
+			document.body.appendChild(backButton);
+			backButton.onclick = backToHomeView();
 
 
 			// handle tasks
@@ -124,19 +136,49 @@ function showCourseView(taskList) {
 			alltasksDiv.forEach(taskDiv => {
 				taskDiv.onclick = () => {
 					
-					taskDiv.classList.add("task-item--selected");
+					// taskDiv.classList.add("task-item--selected");
 					let tasks = document.getElementsByClassName("task-item");
 					for (let i = 0; i < tasks.length; i++) {
-						if (tasks[i].classList.contains("task-item--selected"))
-							continue;
+						// if (tasks[i].classList.contains("task-item--selected"))
+						// 	continue;
+						if (tasks[i] === taskDiv) continue;
+						tasks[i].classList.add("task-item--hidden");
 						tasks[i].style.display = 'none';
 					}
 
 					getTaskDetails(taskList, taskDiv.dataset.id);
+
+
+
+					//create back button
+					let backToCourseButton = document.createElement('button');
+					backToCourseButton.className = "back-to-course-button";
+					document.body.appendChild(backToCourseButton);
+					backToCourseButton.onclick = backToCourseView();
 				}
 
 				
 			});
 		}
 	});
+}
+
+function backToHomeView() {
+	let allCourseDivs = document.getElementsByClassName('classroom-box');
+	allCourseDivs.forEach(courseDiv => { 
+		if (courseDiv.classList.contains("classroom-box--hidden"))
+			courseDiv.classList.remove("classroom-box--hidden");		
+	});
+}
+
+
+function backToCourseView() {
+	let alltasksDiv = courseDiv.getElementsByClassName('task-item');
+	alltasksDiv.forEach(taskDiv => {
+		if (taskDiv.classList.contains("task-item--hidden"))
+		taskDiv.classList.remove("task-item--hidden");	
+	});	
+
+	let taskDetailsDiv = document.querySelector('.task-details-div');
+	document.body.removeChild(taskDetailsDiv);
 }

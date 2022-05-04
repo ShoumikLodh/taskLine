@@ -7,21 +7,23 @@ window.onload = async () => {
 function filterTasks() {
 	let highlightButtons = document.getElementsByClassName('highlight-button');
 	highlightButtons.forEach(button => {
-		button.onclick = button => {
-			// highlight time block here;
+		// console.log(button);
+		button.onclick = () => {
 
 			let highlighted_tasks = [];
-			
+			console.log("inside onclick");
 			let deadlines = document.getElementsByClassName("task-item");
 			deadlines.forEach(task => {
-				if (button.dataset.range === task.dataset.range) {
+				if (button.dataset.number === task.dataset.range) {
 					task.classList.add("task-item--highlight");
+					task.style.border = "5px red solid";
 				}
 			});
-
-
+			document.body.style.backgroundColor = "black";
+			console.log("after black");
 			window.onclick = () => {
 				//dehighlight time block here
+				document.body.style.backgroundColor = "white";
 				highlighted_tasks.forEach(task => {
 					task.classList.remove("task-item--highlight");
 				})
