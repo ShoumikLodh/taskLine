@@ -155,6 +155,9 @@ main {
   border-radius: 20px;
   border: 1px solid gainsboro;
 }
+#classroom-button:hover{
+  opacity:0.6;  
+}
 #back-and-home{
   padding:8px;
   top:30px;
@@ -175,16 +178,10 @@ main {
   border-radius: 20px;
   border: 1px solid gainsboro;
 }
-#sign-in-button-red {
-  margin: 12px 25px;
-  padding: 0.45rem 0.8rem;
-  background: rgb(216, 95, 82);
-  color: white;
-  font-weight: 400;
-  font-size: 14px;
-  border-radius: 20px;
-  border: 1px solid gainsboro;
+#sign-in-button:hover{
+  opacity:0.6;
 }
+
 .buttons{
   margin: 12px 25px;
   padding: 0.45rem 0.8rem;
@@ -194,6 +191,9 @@ main {
   font-size: 14px;
   border-radius: 20px;
   border: 1px solid gainsboro;
+}
+.buttons:hover{
+  opacity: 0.5;
 }
 
 
@@ -387,6 +387,10 @@ padding: 5px;
 
 .task-item-hidden {
   display: none;
+}
+#custom{
+  top:20px;
+  left:400px;
 }
 
 

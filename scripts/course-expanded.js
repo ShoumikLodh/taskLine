@@ -175,7 +175,7 @@ function handleTaskClick(taskList, courseDiv, backButton) {
 				// console.log(homeButton[0]);
 				document.getElementById("back-and-home").removeChild(backToCourseButton);
 
-				//document.body.removeChild(backToCourseButton);
+				document.body.removeChild(backToCourseButton);
 			}
 
 			/* document.addEventListener('DOMContentLoaded', () => {
