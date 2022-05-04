@@ -155,6 +155,11 @@ main {
   border-radius: 20px;
   border: 1px solid gainsboro;
 }
+#back-and-home{
+  padding:8px;
+  top:30px;
+  left:302px;
+}
 #sign-in-button {
 
   position: fixed;
@@ -309,7 +314,7 @@ main {
   overflow: scroll;
   min-width: 500px;
   min-height: 75%;
-  max-height: 90%;
+  max-height: 79%;
 /* height: fit-content; */
   /* height: 80%; */
   margin-top: 20px;
@@ -324,7 +329,7 @@ main {
   color: rgb(250, 245, 245);
 }
 ::-webkit-scrollbar{
-  width: 1px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track{
   background: none;
@@ -338,8 +343,9 @@ main {
   border-color: #ef9a87;
 }
 .class-title{
+  font-weight: bolder;
   color:black;
-  font-size: medium;
+  font-size: large;
 padding:1em;
 padding-bottom:0em;
 }
@@ -347,9 +353,12 @@ padding-bottom:0em;
   color: black;
   padding:1em;
   margin: 0px;
+  font-size: smaller;
 }
 .due-date{
+  font-size: medium;
   color: rgb(229, 61, 61);
+  padding: 0.7em;
 }
 .task-description{
   overflow: scroll;
