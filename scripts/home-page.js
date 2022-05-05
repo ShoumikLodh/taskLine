@@ -167,8 +167,10 @@ function addInstructorInfo(teacher_id, class_header) {
 	.then(function(response) {
 		let profName = response.result.name.fullName;
 		let span = document.createElement('span');
+		span.id="profname";
 		span.innerHTML = `${profName}`;
-		class_header.insertBefore(span, class_header.childNodes[2]);
+		class_header.appendChild(span);
+		//class_header.insertBefore(span, class_header.childNodes[2]);
 		
 
 
