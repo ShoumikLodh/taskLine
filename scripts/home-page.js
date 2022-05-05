@@ -152,17 +152,22 @@ function addCourseBoxItem(course) {
 	
 
 	let classroom_box=document.createElement('div');
+	let header_div=document.createElement('div');
+	header_div.setAttribute("id","header_div")
 	classroom_box.className='classroom-box';
+	//classroom_box.appendChild(header_div);
 	document.getElementById("classroom-box-list").appendChild(classroom_box);
 	
 	
 	
 	let class_header=document.createElement('div');
-	class_header.style.display = "none";
+//	class_header.style.display = "none";
 	class_header.className="classroom-header";
+	class_header.appendChild(header_div);
 	class_header.innerHTML += `
 	<span class = "classroom-banner-text">${course.name}</span>
 	<div class="deadlines-div"></div>`;
+	
 	classroom_box.appendChild(class_header);
 	return classroom_box;
 }
@@ -192,7 +197,8 @@ function addInstructorInfo(teacher_id, class_header) {
 		class_header.insertBefore(span, class_header.childNodes[2]);
 		
 		// profPic.className = "course-prof-pic-item";
-		// class_header.innerHTML += `<span>${profName}</span>`;
+		//document.getElementsByClassName("classroom-banner-text").innerHTML += `<span>${profName}</span>`;
+		//class_header.innerHTML += `<span>${profName}</span>`;
 		// courseHeader.appendChild(profPic);
 
 
@@ -202,7 +208,7 @@ function addInstructorInfo(teacher_id, class_header) {
 		profPic.referrerPolicy = "no-referrer";
 		profPic.onload = () => {
 			class_header.insertBefore(profPic, class_header.firstChild);
-			class_header.style.display = "block";
+			//class_header.style.display = "block";
 			// class_header.style.border = "1px red solid";
 		}
 	});
