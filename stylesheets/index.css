@@ -197,6 +197,13 @@ main {
   opacity: 0.5;
 }
 
+#back-to-course{
+  position:absolute;
+  top:10px;
+  left: 320px;
+  margin-left: 0px;
+}
+
 
 #auth-status {
   display: inline;
@@ -267,7 +274,8 @@ main {
 #classroom-box-background {
   position: absolute;
   top: 150px;
-  width: calc(100% - 330px);
+  /* width: calc(100% - 0px); */
+  min-width: 100%;
   margin: 0 1.4rem;
   height: 90%;
 }
@@ -287,23 +295,23 @@ main {
 
 #classroom-box-background > *:nth-child(1) {
   background: #48F93919;
-  border-color: #48F939;
+  border-color: #bdcdbb;
   justify-content: space-between;
 }
 
 #classroom-box-background > *:nth-child(2) {
   background: #FFE14626;
-  border-color: #FFE146;
+  border-color: #bdcdbb;
 }
 
 #classroom-box-background > *:nth-child(3) {
   background: #FF990033;  
-  border-color: #FF9900;
+  border-color: #bdcdbb;
 }
 
 #classroom-box-background > *:nth-child(4) {
   background: #FF000033;
-  border-color: #FF0000;
+  border-color: #bdcdbb;
 }
 .task-details-div{
   align-self: center;
@@ -408,10 +416,71 @@ padding: 5px;
 .task-item-hidden {
   display: none;
 }
-#custom{
-  top:20px;
-  left:400px;
+
+  /* BUTTONS FORMATTING  */
+
+
+#green{
+  position:absolute;
+  z-index: 50;
+  top:184px;
+  left:301px;
+  width:8px;
+  height:30px;
+  background-color: #48F939;
+  border-radius: 10px;
+  border: 1px solid rgb(72, 133, 14);
+}
+#green:hover{
+  background-color: #c7ffb2;
+}
+#yellow{
+  position:absolute;
+  z-index: 50;
+  top:284px;
+  left:301px;
+  width:8px;
+  height:30px;
+  background-color: #FFE146;
+  border-radius: 10px;
+  border: 1px solid rgb(72, 133, 14);
+
+}
+#yellow:hover{
+  background-color:#eef35c;
+}
+#orange{
+  position:absolute;
+  z-index: 50;
+  top:380px;
+  left:301px;
+  width:8px;
+  height:30px;
+  background-color: #FF9900;
+  border-radius: 10px;
+  border: 1px solid rgb(72, 133, 14);
+  
+}
+#orange:hover{
+  background-color: #f5b732
 }
 
+#red{
+  position:absolute;
+  z-index: 50;
+  top:478px;
+  left:301px;
+  width:8px;
+  height:30px;
+  background-color: #FF0000;
+  border-radius: 10px;
+  border: 1px solid rgb(72, 133, 14);
+  
+
+}
+#red:hover{
+  background-color: #e29a8b;
+
+}
 
 
