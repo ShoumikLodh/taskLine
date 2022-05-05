@@ -38,10 +38,10 @@ function findTaskDiffSinceLast() {
 function addNotifs(task) {
 
 
-        let notifList = document.querySelector("#notifications");
-        let list_item = document.createElement('li');
-        list_item.className = "notifications-element";
-        notifList.appendChild(list_item);
-        list_item.innerHTML = `Deadline for <span class="notifications-course-title">${task.innerHTML}</span>   is nearing.`;
+    let notifList = document.querySelector("#notifications");
+    let list_item = document.createElement('li');
+    list_item.className = "notifications-element";
+    notifList.appendChild(list_item);
+    list_item.innerHTML = `Deadline for <span class="notifications-course-title">${task.innerHTML}</span>   is nearing.`;
 
 }

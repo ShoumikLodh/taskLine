@@ -35,7 +35,7 @@ async function fetchCourseWork(course, courseDiv) {
 					let taskDiv = document.createElement('div');
 					taskDiv.setAttribute("data-range", "-1");
 					taskDiv.setAttribute("data-id", assignment.id);
-					taskDiv.style.border = "1px red solid";
+					// taskDiv.style.border = "1px red solid";
 					taskDiv.className = "task-item";
 					// console.log(courseDiv);
 					// courseDiv.appendChild(taskDiv);
@@ -166,36 +166,31 @@ function showCourseView(taskList) {
 				// console.log(courses[i]);
 			}
 			let backButton = document.createElement('button');
-    backButton=document.getElementById("taskline-logo");
+    // backButton=document.getElementById("taskline-logo");
 			backButton.setAttribute("id", "back-to-home-button");
-			// backButton.innerHTML = "Home Page";
-			// backButton.className = "buttons";
-			
-			//document.body.appendChild(backButton);
+			backButton.innerHTML = `Home`;
+			backButton.className = "buttons";
+			document.body.appendChild(backButton);
 			
 			backButton.onclick = () => {
+			
 				backToHomeView(courseDiv);
-				document.getElementById("back-to-course").outerHTML = "";
-
+				let butt = document.getElementById("back-to-course");
+				if (butt !== null) butt.innerHTML = "";
 				document.body.removeChild(backButton);
-				// backButtonPressed = true;
 			}
-			// console.log(backButtonPressed);
-
-			// if (backButtonPressed === true) return;
 			handleTaskClick(taskList, courseDiv, backButton);
-			// handleTaskClick(newList, courseDiv, backButton);
 			
 		}
 	});
 }
 
-function handleTaskClick(taskList, courseDiv) {
+function handleTaskClick(taskList, courseDiv, backButton) {
 	// handle tasks
 	let alltasksDiv = courseDiv.getElementsByClassName('task-item');
 	alltasksDiv.forEach(taskDiv => {
 		taskDiv.onclick = () => {
-			// document.body.removeChild(backButton);
+			document.body.removeChild(backButton);
 
 			let tasks = document.getElementsByClassName("task-item");
 			for (let i = 0; i < tasks.length; i++) {
@@ -215,26 +210,12 @@ function handleTaskClick(taskList, courseDiv) {
 			 backToCourseButton.setAttribute("id", "back-to-course");
 
 			document.body.appendChild(backToCourseButton);
+
 			backToCourseButton.onclick = () => {
 				backToCourseView(courseDiv);
-				// homeButton[0].style.display = "block";
-				// console.log(homeButton[0]);
-				//document.getElementById("back-and-home").removeChild(backToCourseButton);
-
 				document.body.removeChild(backToCourseButton);
 			}
 
-			/* document.addEventListener('DOMContentLoaded', () => {
-
-				let homeButton = document.querySelectorAll(".buttons");
-				// console.log(home);
-				console.log(homeButton, homeButton[0]);
-				homeButton[0].style.display = "none";
-				
-				
-			
-				
-			}); */
 		
 		
 		}
