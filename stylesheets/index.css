@@ -224,6 +224,7 @@ main {
 }
 
 .classroom-box {
+
   margin: 2rem 2rem 2.5rem 7rem;
   --border-radius: 3rem;
   --border-thickness: 4px;
@@ -232,7 +233,7 @@ main {
   height: 90%;
   width: 250px;;
   z-index: 10;
-  display: flex;
+  /* display: flex; */
 }
 
 .classroom-box--hidden {
@@ -436,7 +437,11 @@ padding: 5px;
 }
 
 /* xiao, add task-item css here only */
-
+.task-item {
+  margin: 10px;
+  border-radius: 20px;
+  padding: 10px;
+}
 .task-item-hidden {
   display: none;
 }
