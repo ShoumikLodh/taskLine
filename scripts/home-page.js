@@ -3,7 +3,15 @@ window.onload = async () => {
 	// if (localStorage.getItem("oldTaskList") !== null) {
 	// findTaskDiffSinceLast();
 	// }
+	let pet_image = document.querySelector("#duck-image");
+	setTimeout(() => {
+		pet_image.style.opacity = 0.4;
+	}, 3000);
 	
+	setTimeout(() => {
+		pet_image.style.opacity = 1;
+		pet_image.src = "assets/sad.png";
+	}, 3500);
 	filterTasks();
 	
 }
