@@ -121,15 +121,17 @@ function showCourseView(taskList) {
 				// console.log(courses[i]);
 			}
 			let backButton = document.createElement('button');
-    //backButton=document.getElementById("taskline-logo");
-			// backButton.setAttribute("id", "back-to-home-button");
-			backButton.innerHTML = "Home Page";
-			backButton.className = "buttons";
+    backButton=document.getElementById("taskline-logo");
+			backButton.setAttribute("id", "back-to-home-button");
+			// backButton.innerHTML = "Home Page";
+			// backButton.className = "buttons";
 			
-			document.body.appendChild(backButton);
+			//document.body.appendChild(backButton);
 			
 			backButton.onclick = () => {
 				backToHomeView(courseDiv);
+				document.getElementById("back-to-course").outerHTML = "";
+
 				document.body.removeChild(backButton);
 				// backButtonPressed = true;
 			}
@@ -142,12 +144,12 @@ function showCourseView(taskList) {
 	});
 }
 
-function handleTaskClick(taskList, courseDiv, backButton) {
+function handleTaskClick(taskList, courseDiv) {
 	// handle tasks
 	let alltasksDiv = courseDiv.getElementsByClassName('task-item');
 	alltasksDiv.forEach(taskDiv => {
 		taskDiv.onclick = () => {
-			document.body.removeChild(backButton);
+			// document.body.removeChild(backButton);
 
 			let tasks = document.getElementsByClassName("task-item");
 			for (let i = 0; i < tasks.length; i++) {
@@ -160,20 +162,17 @@ function handleTaskClick(taskList, courseDiv, backButton) {
 
 			//create back button
 			let backToCourseButton = document.createElement('button');
+			//backToCourseButton.id="back-to-course";
 			backToCourseButton.className = "buttons";
 			backToCourseButton.innerHTML = "Back";
-			// backToCourseButton.setAttribute("id", "back-to-course-button");
-			//backToCourseButton.id="sign-in-button-red";
-			//document.getElementById("navbar").removeChild();
-			//document.getElementById("navbar").appendChild(signIn);
-			// document.getElementById("navbar").appendChild(backToCourseButton);
-			document.getElementById("back-and-home").appendChild(backToCourseButton);
-			//document.body.appendChild(backToCourseButton);
+			 backToCourseButton.setAttribute("id", "back-to-course");
+
+			document.body.appendChild(backToCourseButton);
 			backToCourseButton.onclick = () => {
 				backToCourseView(courseDiv);
 				// homeButton[0].style.display = "block";
 				// console.log(homeButton[0]);
-				document.getElementById("back-and-home").removeChild(backToCourseButton);
+				//document.getElementById("back-and-home").removeChild(backToCourseButton);
 
 				document.body.removeChild(backToCourseButton);
 			}
