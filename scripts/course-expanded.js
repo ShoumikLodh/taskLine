@@ -58,22 +58,26 @@ async function fetchCourseWork(course, courseDiv) {
 						case (remainingPercent >= 75 && remainingPercent < 100):
 							deadlinesInRange[1].push(assignment);
 							taskDiv.dataset.range = 1;
-							taskDiv.style.border = "2px solid #48F939";
+							taskDiv.style.backgroundColor = "#48F939";
+							// taskDiv.style.border = "2px solid #48F939";
 							break;
 						case (remainingPercent >= 50 && remainingPercent < 75):
 							deadlinesInRange[2].push(assignment);
 							taskDiv.dataset.range = 2;
-							taskDiv.style.border = "2px solid #FFE146";
+							taskDiv.style.backgroundColor = "#FFE146";
+							// taskDiv.style.border = "2px solid #FFE146";
 							break;
 						case (remainingPercent >= 25 && remainingPercent < 50):
 							deadlinesInRange[3].push(assignment);
 							taskDiv.dataset.range = 3;
-							taskDiv.style.border = "2px solid #FF9900";
-						break;
+							taskDiv.style.backgroundColor = "#f7af43";
+							// taskDiv.style.border = "2px solid #FF9900";
+							break;
 						case (remainingPercent > 0 && remainingPercent < 25):
 							deadlinesInRange[4].push(assignment);
 							taskDiv.dataset.range = 4;
-							taskDiv.style.border = "2px solid #FF0000";
+							taskDiv.style.backgroundColor = "#ed5d5a";
+							// taskDiv.style.border = "2px solid #FF0000";
 							addNotifs(taskDiv);
 							break;
 					}
