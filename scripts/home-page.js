@@ -139,6 +139,8 @@ function addCourseBoxItem(course) {
 
 
 	let classroom_box=document.createElement('div');
+	let header_div=document.createElement('div');
+	header_div.setAttribute("id","header_div")
 	classroom_box.className='classroom-box';
 	// classroom_box.style.display = "none";
 	document.getElementById("classroom-box-list").appendChild(classroom_box);
@@ -146,8 +148,9 @@ function addCourseBoxItem(course) {
 	
 	
 	let class_header=document.createElement('div');
-	class_header.style.display = "none";
+//	class_header.style.display = "none";
 	class_header.className="classroom-header";
+	class_header.appendChild(header_div);
 	class_header.innerHTML += `
 	<span class = "classroom-banner-text">${course.name}</span>`;
 	classroom_box.appendChild(class_header);

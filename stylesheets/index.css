@@ -243,7 +243,7 @@ main {
   aspect-ratio: 1;
   border-radius: 50%;
   border: var(--border-thickness) solid #969696;
-  height: 100%;
+  height: 80%;
 }
 
 .classroom-header {
@@ -262,21 +262,21 @@ main {
   color: #969696;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  /* justify-content: space-around; */
 }
 
-.classroom-banner-text > span:first-child {
-  font-size: 1.4rem;
-  font-weight: 600;
-  margin: 0;
-  margin-bottom: -3px;
-}
+  .classroom-banner-text > span:first-child {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: -3px;
+  }
 
-.classroom-banner-text > span:last-child {
-  font-size: 0.8rem;
-  font-weight: 400;
-  margin: 0;
-}
+  .classroom-banner-text > span:last-child {
+    font-size: 0.8rem;
+    font-weight: 400;
+    margin: 0;
+  }
 
 #classroom-box-list {
   flex-grow: 1;
@@ -295,6 +295,7 @@ main {
 }
 
 #classroom-box-background > * {
+  min-width:3000px;
   height: 15%;
   align-self: stretch;
   z-index: 0;
