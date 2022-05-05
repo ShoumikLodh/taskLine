@@ -78,6 +78,7 @@ async function initAddCourses(response) {
 					// console.log(taskListWithRange);
 					taskList[course.id] = taskListWithRange;
 					let classHeader = courseBox.querySelector(".classroom-header");
+					// addInstructorInfo(course.ownerId, classHeader, courseBox);
 					addInstructorInfo(course.ownerId, classHeader);
 					count++;
 					if (count >= 4 ) {
@@ -135,24 +136,14 @@ async function initAddCourses(response) {
 	return newTaskList;
 }
 
-//#region 		
 
 
 function addCourseBoxItem(course) {
-	// <ul id="classroom-box-list">
-    //         <div class="classroom-box">
-    //             <div class="classroom-header">
-    //                 <img class="profile-picture" src="assets/vp.png"></img>
-    //                 <span class="classroom-banner-text">Designing Interactive Systems</span>
-//                     <span>Grace Eden</span>
-    //             </div>
-    //         </div>
-    //     </ul>
-//#endregion
-	
+
 
 	let classroom_box=document.createElement('div');
 	classroom_box.className='classroom-box';
+	// classroom_box.style.display = "none";
 	document.getElementById("classroom-box-list").appendChild(classroom_box);
 	
 	
@@ -168,19 +159,7 @@ function addCourseBoxItem(course) {
 }
 
 
-	// let deadlinesDiv = document.createElement('div');
-	// class_header.className="deadlines-div";
-	// classroom_box.appendChild(deadlinesDiv);
-	// console.log(class_header);
-	// console.log(classroom_box);
-	// addInstructorInfo(course.ownerId, class_header);
-	
 
-	// let list_item = document.createElement('li');
-	// list_item.append(classroom_box);
-	// document.getElementById("classroom-box-list").appendChild(list_item);
-	//document.body.appendChild(courseBox);
-	
 
 function addInstructorInfo(teacher_id, class_header) {
 	return gapi.client.classroom.userProfiles.get({ 'userId': teacher_id})
@@ -191,9 +170,6 @@ function addInstructorInfo(teacher_id, class_header) {
 		span.innerHTML = `${profName}`;
 		class_header.insertBefore(span, class_header.childNodes[2]);
 		
-		// profPic.className = "course-prof-pic-item";
-		// class_header.innerHTML += `<span>${profName}</span>`;
-		// courseHeader.appendChild(profPic);
 
 
 		let profPic = document.createElement("img");
@@ -203,38 +179,8 @@ function addInstructorInfo(teacher_id, class_header) {
 		profPic.onload = () => {
 			class_header.insertBefore(profPic, class_header.firstChild);
 			class_header.style.display = "block";
-			// class_header.style.border = "1px red solid";
+			// courseBox.style.display = "block";
 		}
 	});
 }
-	
-/* function createProfPic(response, courseDiv) {
-	let profPic = document.createElement("img");
-	profPic.className = "course-prof-pic-item";
-	profPic.style.height = '30px';
-	profPic.style.width = '30px';
-	profPic.src = "https:".concat(response.result.photoUrl);
-	profPic.referrerPolicy = "no-referrer";
-	
-	profPic.onload = () => {
-		courseDiv.insertBefore(profPic, courseDiv.firstChild);
-		courseDiv.style.display = "block";
-		// courseDiv.style.border = "1px red solid";
-	}
-	
-} 
-
-t picUrl = "https:".concat(response.result.photoUrl);
-		// profPic.style.height = '30px';
-		// profPic.style.width = '30px';
-		
-		// let profName = document.createElement('p');
-		// profName.className = "course-prof-item";
-		// profName.innerHTML = response.result.name.fullName;
-		// courseDiv.insertBefore(profName, courseDiv.childNodes[1]);
-		
-			// createP
-
-  */
-	
 	
