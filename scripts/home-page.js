@@ -167,8 +167,10 @@ function addInstructorInfo(teacher_id, class_header) {
 	.then(function(response) {
 		let profName = response.result.name.fullName;
 		let span = document.createElement('span');
+		span.id="profname";
 		span.innerHTML = `${profName}`;
-		class_header.insertBefore(span, class_header.childNodes[2]);
+		class_header.appendChild(span);
+		//class_header.insertBefore(span, class_header.childNodes[2]);
 		
 
 
@@ -178,7 +180,7 @@ function addInstructorInfo(teacher_id, class_header) {
 		profPic.referrerPolicy = "no-referrer";
 		profPic.onload = () => {
 			class_header.insertBefore(profPic, class_header.firstChild);
-			class_header.style.display = "block";
+			class_header.style.display = "flex";
 			// courseBox.style.display = "block";
 		}
 	});

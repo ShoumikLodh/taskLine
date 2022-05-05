@@ -260,10 +260,17 @@ main {
 }
 
 .classroom-banner-text {
-  color: #969696;
+  font-weight: 500;
+  font-size:large;
+  color: #0a0a0a;
   display: flex;
   flex-direction: column;
   /* justify-content: space-around; */
+}
+#profname{
+  color: #474747;
+  font-size: small;
+
 }
 
   .classroom-banner-text > span:first-child {
