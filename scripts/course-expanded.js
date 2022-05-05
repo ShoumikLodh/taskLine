@@ -52,22 +52,28 @@ async function fetchCourseWork(course, courseDiv) {
 						courseDiv.appendChild(taskDiv);
 
 					}
+					console.log(assignment);
+
 					switch (true) {
 						case (remainingPercent >= 75 && remainingPercent < 100):
 							deadlinesInRange[1].push(assignment);
 							taskDiv.dataset.range = 1;
+							taskDiv.style.border = "1px solid #48F939";
 							break;
 						case (remainingPercent >= 50 && remainingPercent < 75):
 							deadlinesInRange[2].push(assignment);
 							taskDiv.dataset.range = 2;
+							taskDiv.style.border = "1px solid #FFE146";
 							break;
 						case (remainingPercent >= 25 && remainingPercent < 50):
 							deadlinesInRange[3].push(assignment);
 							taskDiv.dataset.range = 3;
-							break;
+							taskDiv.style.border = "1px solid #FF9900";
+						break;
 						case (remainingPercent > 0 && remainingPercent < 25):
 							deadlinesInRange[4].push(assignment);
 							taskDiv.dataset.range = 4;
+							taskDiv.style.border = "1px solid #FF0000";
 							addNotifs(taskDiv);
 							break;
 					}
@@ -110,7 +116,7 @@ function getDuePercentage(assignment) {
 		let timeElapsed = currentTime - creationTime;
 		
 		let percentage = (timeElapsed / totalDeadlineTime) * 100;
-		resolve(100-percentage);
+		resolve(percentage);
 	});
 	// return 100 - percentage;
 	

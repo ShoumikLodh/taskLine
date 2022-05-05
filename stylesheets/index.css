@@ -250,6 +250,7 @@ main {
   background: white;
   display: flex;
   align-items: center;
+  /* width: 100%; */
   padding: 0.7rem 0.5rem;
   gap: 1rem;
   border-radius: calc(var(--border-radius) - var(--border-thickness));
