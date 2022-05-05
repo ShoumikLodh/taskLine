@@ -151,13 +151,14 @@ main {
   /* color: black; */
 }
 
-nav {
+
+#navbar {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
 }
 
-#sign-in-button {
+#classroom-button {
   margin: 12px 25px;
   padding: 0.45rem 0.8rem;
   background: rgb(82, 98, 216);
@@ -167,16 +168,33 @@ nav {
   border-radius: 20px;
   border: 1px solid gainsboro;
 }
-#sign-in-button-red {
-  margin: 12px 25px;
+#classroom-button:hover{
+  opacity:0.6;  
+}
+#back-and-home{
+  padding:8px;
+  top:30px;
+  left:302px;
+}
+#sign-in-button {
+
+  position: fixed;
+  top:20px;
+  right:20px;
+
+  /* margin: 12px 25px; */
   padding: 0.45rem 0.8rem;
-  background: rgb(216, 95, 82);
+  background: rgb(82, 98, 216);
   color: white;
   font-weight: 400;
   font-size: 14px;
   border-radius: 20px;
   border: 1px solid gainsboro;
 }
+#sign-in-button:hover{
+  opacity:0.6;
+}
+
 .buttons{
   margin: 12px 25px;
   padding: 0.45rem 0.8rem;
@@ -186,6 +204,9 @@ nav {
   font-size: 14px;
   border-radius: 20px;
   border: 1px solid gainsboro;
+}
+.buttons:hover{
+  opacity: 0.5;
 }
 
 
@@ -298,7 +319,7 @@ nav {
 }
 .task-details-div{
   align-self: center;
-  background-color: #4D4D4D;
+  background-color: #E4E4E4;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -306,7 +327,7 @@ nav {
   overflow: scroll;
   min-width: 500px;
   min-height: 75%;
-  max-height: 90%;
+  max-height: 79%;
 /* height: fit-content; */
   /* height: 80%; */
   margin-top: 20px;
@@ -321,7 +342,7 @@ nav {
   color: rgb(250, 245, 245);
 }
 ::-webkit-scrollbar{
-  width: 1px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track{
   background: none;
@@ -335,24 +356,34 @@ nav {
   border-color: #ef9a87;
 }
 .class-title{
-  font-size: medium;
+  font-weight: bolder;
+  color:black;
+  font-size: large;
 padding:1em;
 padding-bottom:0em;
 }
 .due-date,.update-time{
+  color: black;
   padding:1em;
   margin: 0px;
+  font-size: smaller;
 }
 .due-date{
+  font-size: medium;
   color: rgb(229, 61, 61);
+  padding: 0.7em;
 }
 .task-description{
+  overflow: scroll;
+  
+  color:black;
   margin: 1em;
   border-radius: 2%;
-  background-color: #969696;
+  background-color: #ffffff;
 padding: 5px;
 }
 .task-attachment-item{
+  color: black;
   margin:1em;
   display: flex;
   flex-direction: row;
@@ -369,6 +400,10 @@ padding: 5px;
 
 .task-item-hidden {
   display: none;
+}
+#custom{
+  top:20px;
+  left:400px;
 }
 
 

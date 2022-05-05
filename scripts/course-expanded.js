@@ -177,12 +177,12 @@ function showCourseView(taskList) {
 				courses[i].classList.add("classroom-box--hidden");
 				// console.log(courses[i]);
 			}
-
 			let backButton = document.createElement('button');
+    //backButton=document.getElementById("taskline-logo");
 			// backButton.setAttribute("id", "back-to-home-button");
 			backButton.innerHTML = "Home Page";
 			backButton.className = "buttons";
-			// document.getElementById("navbar").appendChild(backButton);
+			
 			document.body.appendChild(backButton);
 			
 			backButton.onclick = () => {
@@ -226,11 +226,14 @@ function handleTaskClick(taskList, courseDiv, backButton) {
 			//document.getElementById("navbar").removeChild();
 			//document.getElementById("navbar").appendChild(signIn);
 			// document.getElementById("navbar").appendChild(backToCourseButton);
-			document.body.appendChild(backToCourseButton);
+			document.getElementById("back-and-home").appendChild(backToCourseButton);
+			//document.body.appendChild(backToCourseButton);
 			backToCourseButton.onclick = () => {
 				backToCourseView(courseDiv);
 				// homeButton[0].style.display = "block";
 				// console.log(homeButton[0]);
+				document.getElementById("back-and-home").removeChild(backToCourseButton);
+
 				document.body.removeChild(backToCourseButton);
 			}
 
