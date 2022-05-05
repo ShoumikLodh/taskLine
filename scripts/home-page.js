@@ -178,7 +178,7 @@ function addInstructorInfo(teacher_id, class_header) {
 		profPic.referrerPolicy = "no-referrer";
 		profPic.onload = () => {
 			class_header.insertBefore(profPic, class_header.firstChild);
-			class_header.style.display = "block";
+			class_header.style.display = "flex";
 			// courseBox.style.display = "block";
 		}
 	});
