@@ -1,6 +1,10 @@
 window.onload = async () => {
 	const promise = await authenticate().then(loadClient).then(execute);
-	filterTasks();
+	// if (localStorage.getItem("oldTaskList") !== null) {
+	// findTaskDiffSinceLast();
+	// }
+	
+	// filterTasks();
 	
 }
 
@@ -34,7 +38,7 @@ function filterTasks() {
 }
 
 async function execute() {
-	var taskList = {};
+	// var taskList = {};
 	try {
 		const response = await gapi.client.classroom.courses.list({
 			"courseStates": [
@@ -42,34 +46,93 @@ async function execute() {
 			]
 		});
 
-		response.result.courses.forEach( course => {
-			var courseBox = addCourseBoxItem(course);
-			// console.log(courseBox);
-			var deadlineDiv = courseBox.querySelector(".deadlines-div");
-			// console.log(deadlineDiv);
-			
-			
-			fetchCourseWork(course, deadlineDiv)
-			.then(taskListWithRange => {
-				taskList[course.id] = taskListWithRange;
-				let classHeader = courseBox.querySelector(".classroom-header");
-				addInstructorInfo(course.ownerId, classHeader);
-	
-			})
-			 .catch(err => {
-				console.log(err.message);
-				let courseList = document.querySelector("#classroom-box-list");
-				courseList.removeChild(courseBox);
-			}); 
-		});
-		showCourseView(taskList); 
+		let taskList = await initAddCourses(response);
+		// console.log(taskList);
+		// let newList = convertDict(taskList);
+		// console.log(newList);
+		// showCourseView(newList);
 
+		// addNotifs(); 
+		// showCourseView(taskList); 
+//#region 
 	} catch(err) {
 		console.error("Execute error", err);
 	} 
-
 	
 
+}
+
+async function initAddCourses(response) {
+	let newList = await new Promise(resolve => {
+
+		var taskList = {};
+		// document.addEventListener('DOMContentLoaded', () => {
+		response.result.courses.forEach(course => {
+			var courseBox = addCourseBoxItem(course);
+			var deadlineDiv = courseBox.querySelector(".deadlines-div");
+			var count = 0;
+			fetchCourseWork(course, deadlineDiv)
+			.then(taskListWithRange => {
+				// console.log("inside");
+				// 	addNotifs(); 
+					// console.log(taskListWithRange);
+					taskList[course.id] = taskListWithRange;
+					let classHeader = courseBox.querySelector(".classroom-header");
+					addInstructorInfo(course.ownerId, classHeader);
+					count++;
+					if (count >= 4 ) {
+						// addNotifs();
+						count = 0;
+					}
+
+			})
+			.catch(err => {
+				console.log(err.message);
+				let courseList = document.querySelector("#classroom-box-list");
+				courseList.removeChild(courseBox);
+			});
+		});
+	// });
+
+		// document.addEventListener('DOMContentLoaded', () => {
+		// 	console.log("loaded");
+		// 	// resolve(taskList);
+
+		// })
+		resolve(taskList);
+	});
+	return newList;
+	// return await convertDict(newList);
+
+}
+//#endregion
+ function convertDict(taskList) {
+	// let promise = await new Promise(resolve => {
+		var newTaskList = {1: [], 2: [], 3: [], 4: []  };
+		console.log(taskList);
+
+
+	// for (var key in taskList) {
+		for (const [key, value] of Object.entries(taskList)) {
+			console.log(key, value);
+			//   }
+			// console.log(key);
+			let ranges = taskList[key];
+			for (var val in ranges) {
+				console.log(val, ranges);
+				if (ranges[val].length === 0)	
+				continue;
+				
+				ranges[val].forEach(task => {
+					// console.log(task);
+					newTaskList[val].push(task);
+				});
+			}
+		}
+		// resolve(newTaskList);
+	// });
+	// return promise;
+	return newTaskList;
 }
 
 //#region 		
