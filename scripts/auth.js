@@ -1,5 +1,5 @@
 var GoogleAuth;
-var SCOPE = `https://www.googleapis.com/auth/classroom.courses.readonly https://www.googleapis.com/auth/classroom.rosters.readonly https://www.googleapis.com/auth/classroom.course-work.readonly https://www.googleapis.com/auth/classroom.profile.photos`;
+var SCOPE = `https://www.googleapis.com/auth/classroom.courses.readonly https://www.googleapis.com/auth/classroom.rosters.readonly https://www.googleapis.com/auth/classroom.course-work.readonly https://www.googleapis.com/auth/classroom.profile.photos https://www.googleapis.com/auth/classroom.student-submissions.me.readonly`;
 
   function authenticate() {
 		// console.log('auth');

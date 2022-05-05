@@ -14,9 +14,21 @@ async function getTaskDetails(taskList, taskId) {
 				});
 			}
 		}
+		/* let isResolved = false;
+		for (var val in ranges) {
+			let tasks = ranges[val];
+			tasks.forEach(task => {
+				if (taskId === task.id) {
+					resolve(task);
+					isResolved = true;
+					return;
+				}
+			});
+			if (isResolved) break;
+		} */
 		
 	});
-	displayTask(response);
+	return response;
 }
 
 

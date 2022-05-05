@@ -1,4 +1,4 @@
-const signIn=document.getElementById('sign-in-button');
+// const signIn=document.getElementById('sign-in-button');
 async function fetchCourseWork(course, courseDiv) {
 	var response;
 	try {
@@ -13,7 +13,7 @@ async function fetchCourseWork(course, courseDiv) {
 
 	}
 	catch(err) {
-		console.error("Execute error", err);
+		console.error("execute error in task fetch", err);
 	}
 
 	var deadlinesInRange = {
@@ -30,7 +30,7 @@ async function fetchCourseWork(course, courseDiv) {
 				reject(new Error(`No deadlines in the course: ${course.name}`));
 			}
 			else {
-				response.result.courseWork.forEach(assignment => {
+				response.result.courseWork.forEach(async (assignment) => {
 
 					let taskDiv = document.createElement('div');
 					taskDiv.setAttribute("data-range", "-1");
@@ -38,17 +38,32 @@ async function fetchCourseWork(course, courseDiv) {
 					taskDiv.style.border = "1px red solid";
 					taskDiv.className = "task-item";
 					// console.log(courseDiv);
-					courseDiv.appendChild(taskDiv);
+					// courseDiv.appendChild(taskDiv);
 
 
-					remainingPercent = Math.round(getDuePercentage(assignment));
-					if (remainingPercent !== -1) {
+					let remainingPercent = await getDuePercentage(assignment)
+					.then(arg => arg.toFixed(2));
+
+					let isSubmitted = await checkSubmissionStatus(assignment);
+					// .then(arg => {
+					// 	isSubmitted = arg;
+					// });
+					// console.log(remainingPercent);
+					// if (assignment.id === "452670849459")
+					// 	console.log(isSubmitted, remainingPercent);
+					
+					// console.log(taskDiv);
+					// console.log("alvin");
+					if (remainingPercent !== -1 && !isSubmitted) {
 						taskDiv.innerHTML = assignment.title.substring(0, 35) + "...";
 						assignment.percentage = remainingPercent;
-					} else {
-						courseDiv.removeChild(taskDiv);
-					}
+						courseDiv.appendChild(taskDiv);
 
+					} /* else {
+						courseDiv.removeChild(taskDiv);
+						// return;
+					} */
+//#region 
 					switch (true) {
 						case (remainingPercent >= 75 && remainingPercent < 100):
 							deadlinesInRange[1].push(assignment);
@@ -65,11 +80,15 @@ async function fetchCourseWork(course, courseDiv) {
 						case (remainingPercent > 0 && remainingPercent < 25):
 							deadlinesInRange[4].push(assignment);
 							taskDiv.dataset.range = 4;
+							addNotifs(taskDiv);
 							break;
 					}
+					// console.log(taskDiv);
+
 
 				});
 			}
+			// console.log(deadlinesInRange);
 			resolve(deadlinesInRange);
 
 		});
@@ -80,33 +99,71 @@ async function fetchCourseWork(course, courseDiv) {
 
 
 function getDuePercentage(assignment) {
-	let creationTime = new Date(assignment.creationTime).valueOf();
-	creationTime = Math.round(creationTime/1000);
+	return new Promise(resolve => {
 
-	let currentTime = new Date().valueOf();	
-	currentTime = Math.round(currentTime/1000);
-	
-	let year = assignment.dueDate.year, month = assignment.dueDate.month, 
-	date = assignment.dueDate.day, hours = assignment.dueTime.hours, 
-	minutes = assignment.dueTime.minutes; 
-	if (minutes === undefined)	minutes = 0;
+		let creationTime = new Date(assignment.creationTime).valueOf();
+		creationTime = Math.round(creationTime/1000);
 
-	let dueTime = new Date(year, month - 1, date, hours, minutes).valueOf();
-	dueTime = Math.round(dueTime/1000);
-
-	if (currentTime > dueTime)
+		let currentTime = new Date().valueOf();	
+		currentTime = Math.round(currentTime/1000);
+		
+		let year = assignment.dueDate.year, month = assignment.dueDate.month, 
+		date = assignment.dueDate.day, hours = assignment.dueTime.hours, 
+		minutes = assignment.dueTime.minutes; 
+		if (minutes === undefined)	minutes = 0;
+		
+		let dueTime = new Date(year, month - 1, date, hours, minutes).valueOf();
+		dueTime = Math.round(dueTime/1000);
+		
+		if (currentTime > dueTime)
 		return -1;
+		
+		let totalDeadlineTime = dueTime - creationTime;
+		let timeElapsed = currentTime - creationTime;
+		
+		let percentage = (timeElapsed / totalDeadlineTime) * 100;
+		resolve(100-percentage);
+	});
+	// return 100 - percentage;
+	
+}
+//#endregion
+function checkSubmissionStatus(task) {
+	// console.log(task);
 
-	let totalDeadlineTime = dueTime - creationTime;
-	let timeElapsed = currentTime - creationTime;
-
-	let percentage = (timeElapsed / totalDeadlineTime) * 100;
-	return 100 - percentage;
-
+	try {
+		return gapi.client.classroom.courses.courseWork.studentSubmissions.list({
+			"courseId" : task.courseId,
+			"courseWorkId": task.id,
+			// "userId": "me",
+			"states": ["TURNED_IN"],
+			"pageSize": 2
+		})
+		.then(response => {
+			if (Object.keys(response.result).length > 0 )
+				return true;
+			else
+				return false;
+		});
+	}
+	catch (err) {
+		console.error("Student Submission fetch error", err);
+	}
+		// console.log(response.result.studentSubmissions);
+		// console.log(Object.keys(response.result).length);
+	// 	if (Object.keys(response.result).length > 0 )
+	// 		return true;
+	// 	else
+	// 		return false;
+	// }
 }
 
 function showCourseView(taskList) {
-
+	// const newList = convertDict(taskList);
+	// console.log(newList);
+	// console.log(JSON.stringify(taskList));
+	// localStorage.setItem("newList", JSON.stringify(taskList));
+	
 	//handle courses
 	let allCourseDivs = document.getElementsByClassName('classroom-box');
 	allCourseDivs.forEach(courseDiv => {
@@ -137,6 +194,7 @@ function showCourseView(taskList) {
 
 			// if (backButtonPressed === true) return;
 			handleTaskClick(taskList, courseDiv, backButton);
+			// handleTaskClick(newList, courseDiv, backButton);
 			
 		}
 	});
@@ -155,7 +213,8 @@ function handleTaskClick(taskList, courseDiv, backButton) {
 				tasks[i].classList.add("task-item--hidden");
 			}
 			
-			getTaskDetails(taskList, taskDiv.dataset.id);
+			getTaskDetails(taskList, taskDiv.dataset.id)
+			.then(task => {  displayTask(task);   });
 
 
 			//create back button
