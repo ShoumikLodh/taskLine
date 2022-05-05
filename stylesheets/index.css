@@ -224,7 +224,7 @@ main {
 }
 
 .classroom-box {
-  margin: 1rem 3rem 2.5rem 8rem;
+  margin: 1rem 2rem 2.5rem 5rem;
   --border-radius: 3rem;
   --border-thickness: 4px;
   border-radius: var(--border-radius);
@@ -431,6 +431,8 @@ padding: 5px;
   display: none;
 }
 
+
+
   /* BUTTONS FORMATTING  */
 
 
@@ -495,6 +497,11 @@ padding: 5px;
 #red:hover{
   background-color: #e29a8b;
 
+}
+
+
+.task-item--highlight {
+  border: 5px red solid;
 }
 
 

@@ -4,7 +4,7 @@ window.onload = async () => {
 	// findTaskDiffSinceLast();
 	// }
 	
-	// filterTasks();
+	filterTasks();
 	
 }
 
@@ -12,26 +12,32 @@ function filterTasks() {
 	let highlightButtons = document.getElementsByClassName('highlight-button');
 	highlightButtons.forEach(button => {
 		// console.log(button);
+		// console.log("dsh;kjdhs;");
 		button.onclick = () => {
 
 			let highlighted_tasks = [];
-			console.log("inside onclick");
+			// console.log("inside onclick");
 			let deadlines = document.getElementsByClassName("task-item");
 			deadlines.forEach(task => {
 				if (button.dataset.number === task.dataset.range) {
 					task.classList.add("task-item--highlight");
+					highlighted_tasks.push(task);
+					// console.log(task);
 					task.style.border = "5px red solid";
 				}
 			});
-			document.body.style.backgroundColor = "black";
-			console.log("after black");
+			// console.log(highlighted_tasks);
+			// document.body.style.backgroundColor = "black";
+			// console.log("after black");
 			window.onclick = () => {
+				window.onclick = null;
+				console.log("window click");
 				//dehighlight time block here
 				document.body.style.backgroundColor = "white";
 				highlighted_tasks.forEach(task => {
+					console.log(task);
 					task.classList.remove("task-item--highlight");
 				})
-				window.onclick = null;
 			} 
 		};
 	});
@@ -73,16 +79,11 @@ async function initAddCourses(response) {
 			var count = 0;
 			fetchCourseWork(course, deadlineDiv)
 			.then(taskListWithRange => {
-				// console.log("inside");
-				// 	addNotifs(); 
-					// console.log(taskListWithRange);
 					taskList[course.id] = taskListWithRange;
 					let classHeader = courseBox.querySelector(".classroom-header");
-					// addInstructorInfo(course.ownerId, classHeader, courseBox);
 					addInstructorInfo(course.ownerId, classHeader);
 					count++;
 					if (count >= 4 ) {
-						// addNotifs();
 						count = 0;
 					}
 
@@ -95,11 +96,7 @@ async function initAddCourses(response) {
 		});
 	// });
 
-		// document.addEventListener('DOMContentLoaded', () => {
-		// 	console.log("loaded");
-		// 	// resolve(taskList);
 
-		// })
 		resolve(taskList);
 	});
 	return newList;
@@ -152,9 +149,9 @@ function addCourseBoxItem(course) {
 	class_header.style.display = "none";
 	class_header.className="classroom-header";
 	class_header.innerHTML += `
-	<span class = "classroom-banner-text">${course.name}</span>
-	<div class="deadlines-div"></div>`;
+	<span class = "classroom-banner-text">${course.name}</span>`;
 	classroom_box.appendChild(class_header);
+	classroom_box.innerHTML += `<div class="deadlines-div"></div>`;
 	return classroom_box;
 }
 
