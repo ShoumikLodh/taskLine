@@ -45,25 +45,13 @@ async function fetchCourseWork(course, courseDiv) {
 					.then(arg => arg.toFixed(2));
 
 					let isSubmitted = await checkSubmissionStatus(assignment);
-					// .then(arg => {
-					// 	isSubmitted = arg;
-					// });
-					// console.log(remainingPercent);
-					// if (assignment.id === "452670849459")
-					// 	console.log(isSubmitted, remainingPercent);
-					
-					// console.log(taskDiv);
-					// console.log("alvin");
+
 					if (remainingPercent !== -1 && !isSubmitted) {
 						taskDiv.innerHTML = assignment.title.substring(0, 35) + "...";
 						assignment.percentage = remainingPercent;
 						courseDiv.appendChild(taskDiv);
 
-					} /* else {
-						courseDiv.removeChild(taskDiv);
-						// return;
-					} */
-//#region 
+					}
 					switch (true) {
 						case (remainingPercent >= 75 && remainingPercent < 100):
 							deadlinesInRange[1].push(assignment);

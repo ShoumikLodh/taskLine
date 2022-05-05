@@ -53,7 +53,7 @@ async function execute() {
 		// showCourseView(newList);
 
 		// addNotifs(); 
-		// showCourseView(taskList); 
+		showCourseView(taskList); 
 //#region 
 	} catch(err) {
 		console.error("Execute error", err);

@@ -128,7 +128,7 @@ main {
 
 .virtualpet-stats-element, .notifications-element {
   background: white;
-  color: rgb(196, 196, 196);
+  color: rgb(70, 70, 70);
   /* height: 1rem; */
   border-radius: 4px;
   font-size: 11px;
@@ -158,19 +158,7 @@ main {
   align-items: center;
 }
 
-#classroom-button {
-  margin: 12px 25px;
-  padding: 0.45rem 0.8rem;
-  background: rgb(82, 98, 216);
-  color: white;
-  font-weight: 400;
-  font-size: 14px;
-  border-radius: 20px;
-  border: 1px solid gainsboro;
-}
-#classroom-button:hover{
-  opacity:0.6;  
-}
+
 #back-and-home{
   padding:8px;
   top:30px;
@@ -359,8 +347,8 @@ main {
   font-weight: bolder;
   color:black;
   font-size: large;
-padding:1em;
-padding-bottom:0em;
+  padding:1em;
+  padding-bottom:0em;
 }
 .due-date,.update-time{
   color: black;
@@ -383,12 +371,31 @@ padding-bottom:0em;
 padding: 5px;
 }
 .task-attachment-item{
+  width: fit-content;
   color: black;
   margin:1em;
   display: flex;
   flex-direction: row;
   padding: 5px;
+  /* border: 0.2px solid black; */
 }
+
+#classroom-button {
+  width: 50%;
+  margin: 0 auto;
+  /* margin: 12px 25px; */
+  padding: 0.45rem 0.8rem;
+  background: rgb(82, 98, 216);
+  color: white;
+  font-weight: 400;
+  font-size: 14px;
+  border-radius: 20px;
+  border: 1px solid gainsboro;
+}
+#classroom-button:hover{
+  opacity:0.6;  
+}
+
 .task-name{
   margin: 2px;
   display: flex;
